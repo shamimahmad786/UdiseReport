@@ -1,21 +1,22 @@
-app-header-component {
-    height: 20vh;
-    /*Or fixed pixel unit*/
-    background-color: green;
-}
+// app-header-component {
+//     height: 20vh;
+//     /*Or fixed pixel unit*/
+//     background-color: green;
+// }
 
-app-footer-component {
-    height: 20vh;
-    /*Or fixed pixel unit*/
-    background-color: black;
-}
+// app-footer-component {
+//     height: 20vh;
+//     /*Or fixed pixel unit*/
+//     background-color: black;
+// }
 
 section {
-    height: calc(80vh);
-    /* - Height: calc(100vh - (navheight + footer))
+  // height: calc(56vh);
+  /* - Height: calc(100vh - (navheight + footer))
         - Over flow y make the dive scrollable 
      when it exceed the fixed height*/
-    overflow-y: auto;
-    transition: all 0.5s;
+  overflow-y: auto;
+    // transition: all 0.5s;
+    height: calc(100vh - 226px);
     background-color: #f9f9f9;
 }

@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+/*====Reset css=========*/
+
+body {
+	font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+}
+a {
+	transition: all .5s ease-in-out;
+	-webkit-transition: all .5s ease-in-out;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li {
+	position: relative;
+}
+.form-control,
+input,
+.form-control:focus,
+select {
+	outline: none;
+	box-shadow: none;
+}
+textarea {
+	resize: none;
+}
+
+strong{font-weight: 700;}
+button, button:focus, button:hover {outline: none;
+	box-shadow: none;}
+.common-btn {background: #028E77; border-radius: 4px; color: #fff; }
+.common-btn:hover {background:#028E77; color: #fff;}
+.card {clear: both; border-radius: 4px;}
+.card-header {background-color: #028E77; font-weight: 600; color: #fff; text-transform: uppercase; line-height: 38px;}
+thead th {background-color:#ccc !important;}
+
+.tabular-wrap{padding:10px}
+.tabular-wrap .card{height: 67.5vh; padding: 15px; margin-bottom:0px;}
