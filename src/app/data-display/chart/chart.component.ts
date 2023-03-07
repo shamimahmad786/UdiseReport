@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 import * as Highcharts from "highcharts/highmaps";
-import worldMap from "@highcharts/map-collection/custom/world.geo.json";
+//import worldMap from "@highcharts/map-collection/custom/world.geo.json";
 //import * as worldMap from @Highcharts/worldMap/
 
 
