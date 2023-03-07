@@ -6,6 +6,9 @@
                         class="bi bi-arrow-left"></i> Back</a></div>
             <div class="card-body">
                 <p>tabular works!</p>
+
+                <ag-grid-angular style="width: 100%; height: 100%;" class="ag-theme-alpine" [columnDefs]="columnDefs"
+                    [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="true" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
             </div>
         </div>
     </div>

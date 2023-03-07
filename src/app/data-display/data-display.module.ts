@@ -4,6 +4,8 @@ import { DataDisplayParentComponent } from './data-display-parent/data-display-p
 import {DataDisplayRoutingModule} from './data-display-routing.module';
 import { TabularComponent } from './tabular/tabular.component';
 import { ChartComponent } from './chart/chart.component'
+import { AgGridModule } from 'ag-grid-angular';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { ChartComponent } from './chart/chart.component'
   ],
   imports: [
     CommonModule,
-    DataDisplayRoutingModule
+    DataDisplayRoutingModule,
+    AgGridModule,
+    HighchartsChartModule
   ]
 })
 export class DataDisplayModule { }
