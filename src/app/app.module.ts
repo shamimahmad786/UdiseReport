@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { TabularComponent } from './data-display/tabular/tabular.component';
 import { ListDataComponent } from './list-data/list-data.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HighchartsChartModule } from 'highcharts-angular';
 // import { HeaderComponentComponent } from './header-component/header-component.component';
 // import { FooterComponentComponent } from './footer-component/footer-component.component';
 // import { ReportListComponentComponent } from './report-list-component/report-list-component.component';
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    HighchartsChartModule
     // AgGridModule.withComponents([TabularComponent])
   ],
   providers: [],
