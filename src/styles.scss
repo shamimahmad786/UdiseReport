@@ -43,6 +43,26 @@ button, button:focus, button:hover {outline: none;
 	box-shadow: none;}
 .common-btn {background: #028E77; border-radius: 4px; color: #fff; }
 .common-btn:hover {background:#028E77; color: #fff;}
+
+.info-btn {background: #0DCAF0; border-radius: 4px; color: #000; }
+.info-btn:hover {background:#09c9f0; color: #000;}
+
+.success-btn {background: #198754; border-radius: 4px; color: #fff; }
+.success-btn:hover {background:#168853; color: #fff;}
+
+.primary-btn {background: #0D6EFD; border-radius: 4px; color: #fff; }
+.primary-btn:hover {background:#096afc; color: #fff;}
+
+.error-btn {background: #DC3545; border-radius: 4px; color: #fff; }
+.error-btn:hover {background:#da3142; color: #fff;}
+
+.warning-btn {background: #FFC107; border-radius: 4px; color: #000; }
+.warning-btn:hover {background:#fcbe03; color: #000;}
+
+.light-btn {background: #F8F9FA; border-radius: 4px; color: #000; }
+.light-btn:hover {background:#ecedee; color: #000;}
+
+
 .card {clear: both; border-radius: 4px;}
 .card-header {background-color: #028E77; font-weight: 600; color: #fff; text-transform: uppercase; line-height: 38px;}
 thead th {background-color:#ccc !important;}
