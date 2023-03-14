@@ -5,11 +5,13 @@
         <div class="mb-3">
             <label for="year" class="form-label">Year :</label>
             <select class="form-select" id="sel1" name="sellist1">
-                <option value="" selected disabled>Select Year</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+                <option value="2021-22">2021-22</option>
+                <option value="2020-21">2020-21</option>
+                <option value="2019-20">2019-20</option>
+                <option value="2018-19">2018-19</option>
+                <option value="2017-18">2017-18</option>
+                <option value="2016-17">2016-17</option>
+                <option value="2015-16">2015-16</option>
               </select>
           </div>
 
@@ -20,12 +22,10 @@
     <div class="col-md-3">
         <div class="mb-3">
             <label for="state" class="form-label">State :</label>
-            <select class="form-select" id="sel1" name="sellist1">
-                <option value="" selected disabled>Select State</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+            <select class="form-select" id="sel1" name="sellist1" (change)="districtListStateIdWise($event)">
+                <option value="national" selected>All India/National</option>
+                <option value="all">State-wise</option>
+                <option *ngFor="let state of stateList.rowValue" [value]="state.udise_state_code">{{state.state_name}}</option>
               </select>
           </div>
         
@@ -34,7 +34,7 @@
     <div class="col-md-3">
         <div class="mb-3">
             <label for="district" class="form-label">District:</label>
-            <select class="form-select" id="sel1" name="sellist1">
+            <select class="form-select" id="sel1" name="sellist1" [disabled]="isDisableSelectDistDropDown" (change)="blockListDistIdWise($event)">
                 <option value="" selected disabled>Select District</option>
                 <option>1</option>
                 <option>2</option>
@@ -48,7 +48,7 @@
     <div class="col-md-3">
         <div class="mb-3">
             <label for="block" class="form-label">Block:</label>
-            <select class="form-select" id="sel1" name="sellist1">
+            <select class="form-select" id="sel1" name="sellist1" [disabled]="isDisableSelectBlockDropDown">
                 <option value="" selected disabled>Select Block</option>
                 <option>1</option>
                 <option>2</option>
