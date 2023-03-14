@@ -6,19 +6,21 @@ import { TabularComponent } from './tabular/tabular.component';
 import { ChartComponent } from './chart/chart.component'
 import { AgGridModule } from 'ag-grid-angular';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { SearchMasterComponent } from '../commonComponent/search-master/search-master.component';
 
 
 @NgModule({
   declarations: [
     DataDisplayParentComponent,
     TabularComponent,
-    ChartComponent
+    ChartComponent,
+    SearchMasterComponent
   ],
   imports: [
     CommonModule,
     DataDisplayRoutingModule,
     AgGridModule,
-    HighchartsChartModule
+    HighchartsChartModule,
   ]
 })
 export class DataDisplayModule { }
