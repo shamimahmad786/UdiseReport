@@ -23,11 +23,11 @@ export class ChartComponent {
       map: worldMap
     },
     title: {
-      text: "Highmaps basic demo"
+      text: ""
     },
     subtitle: {
       text:
-        'Source map: <a href="http://code.highcharts.com/mapdata/custom/world.js">World, Miller projection, medium resolution</a>'
+        ''
     },
     mapNavigation: {
       enabled: true,

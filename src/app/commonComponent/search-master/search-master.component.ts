@@ -148,6 +148,8 @@ ngOnInit(): void
 
   districtListStateIdWise(val:any){
 
+alert(val.target.value )
+
     if(val.target.value !='all' && val.target.value !='national'){
       this.isDisableSelectDistDropDown=false;
     }
