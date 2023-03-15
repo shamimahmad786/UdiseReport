@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-search-master',
@@ -8,8 +8,13 @@ import { Component } from '@angular/core';
 export class SearchMasterComponent {
 
    stateList:any=[]; 
+   @Input() locationType:any;
    isDisableSelectDistDropDown:boolean=true;
-   isDisableSelectBlockDropDown:boolean=true;      
+   isDisableSelectBlockDropDown:boolean=true; 
+   isHideShowStateSelectDropDown:boolean=false; 
+   isHideShowDistSelectDropDown:boolean=false; 
+   isHideShowblckSelectDropDown:boolean=false;
+   isHideShowParlSelectDropDown:boolean=false;   
       
 ngOnInit(): void
     {
@@ -147,18 +152,36 @@ ngOnInit(): void
   }
 
   districtListStateIdWise(val:any){
-
-alert(val.target.value )
-
     if(val.target.value !='all' && val.target.value !='national'){
       this.isDisableSelectDistDropDown=false;
     }
-    
-    
   }
 
   blockListDistIdWise(event:any){
     this.isDisableSelectBlockDropDown =false;
+  }
+
+  ngOnChanges(){
+    debugger
+    switch(this.locationType){
+      case "1":
+        this.isHideShowStateSelectDropDown=true;
+        this.isHideShowDistSelectDropDown=false;
+        this.isHideShowblckSelectDropDown=false;
+        break;
+        case "2":
+        this.isHideShowDistSelectDropDown=true;
+        this.isHideShowblckSelectDropDown=false;
+        break;
+        case "3":
+          this.isHideShowblckSelectDropDown=true;
+          this.isHideShowParlSelectDropDown=false
+          break;
+          case "4":
+            this.isHideShowParlSelectDropDown=true;
+            break;
+    }
+
   }
 
 }

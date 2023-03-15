@@ -13,6 +13,8 @@ export class TabularComponent {
   constructor(private http: HttpClient) { }
 
   private gridColumnApi!: ColumnApi;
+  locationType:any
+
 
   // public columnDefs: ColDef[] = [
   //   { field: 'athlete', filter: 'agTextColumnFilter', minWidth: 200 },
@@ -103,6 +105,10 @@ export class TabularComponent {
    // params.api.setRowData(this.rowData);
    // params.api.setSideBar([])
     // params.api.
+  }
+
+  getLocationType(event:any){
+    this.locationType = event.target.value;
   }
 
 }
