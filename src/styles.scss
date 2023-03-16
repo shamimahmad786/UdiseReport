@@ -109,8 +109,8 @@ box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);}
 /**report heading section****/
 .used-report{background: #fff;}
 .report-heading-section{background-color:#5956E9; height:337px; padding-top:30px; background-repeat:no-repeat; background-size:cover;/* background-attachment:fixed;*/ position:relative; z-index:0; }
-.school-report{background: #fff;}
-.school-report .report-heading-section{background-color:#f8f8f8; height:337px;}
+.school-report, .teacher-report{background: #fff;}
+.school-report .report-heading-section{background-color:#f8f8f8;}
 .report-heading-section .container{position:relative; z-index:1;}
 .report-heading-section:before{position:absolute; z-index:1; left:0; top:0; content:''; width:259px; height:100%; background:url(assets/images/left.png) no-repeat 0 0;}
 .report-heading-section:after{position:absolute; z-index:1; right:0; bottom:0; content:''; width:334px; height:191px; background:url(assets/images/right.png) no-repeat right 0;}
@@ -127,6 +127,7 @@ box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);}
 
 .school-report .section-title{color: #192D89;}
 .school-report .section-title:after{  background: #192D89;}
+.teacher-report .report-heading-section{background-color:#1b9493}
 /**report table section****/
 
 .report-table-section{margin-top:-224px; padding-bottom:40px; position:relative; z-index:1;}
