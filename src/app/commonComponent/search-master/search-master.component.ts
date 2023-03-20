@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { PrimeNGConfig } from "primeng/api";
 
 @Component({
   selector: 'app-search-master',
@@ -14,7 +15,8 @@ export class SearchMasterComponent {
    isHideShowStateSelectDropDown:boolean=false; 
    isHideShowDistSelectDropDown:boolean=false; 
    isHideShowblckSelectDropDown:boolean=false;
-   isHideShowParlSelectDropDown:boolean=false;   
+   isHideShowParlSelectDropDown:boolean=false; 
+
       
 ngOnInit(): void
     {
@@ -147,19 +149,14 @@ ngOnInit(): void
 
 
     }
-  constructor(){
+    gfg: any[];
+    constructor(private primeNGConfig: PrimeNGConfig) {
+        this.gfg = [
+            { geek: 'True' },
+            { geek: 'False' },
+        ];
+      }
 
-  }
-
-  districtListStateIdWise(val:any){
-    if(val.target.value !='all' && val.target.value !='national'){
-      this.isDisableSelectDistDropDown=false;
-    }
-  }
-
-  blockListDistIdWise(event:any){
-    this.isDisableSelectBlockDropDown =false;
-  }
 
   ngOnChanges(){
     debugger
