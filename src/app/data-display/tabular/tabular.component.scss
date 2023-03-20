@@ -1,9 +1,19 @@
 #sidebar {
-    width: 300px;
+
+  position: absolute;
+  right: 0;
+  background: #E2E8F0;
+  padding: 15px;
+  height: 100%;
+  z-index: 999;
+  top: 0;
+  border-left: solid 1px #ccc;
   }
+
+  #sidebar-nav { width: 300px;}
 
   .side-menu {width: auto;
     padding: 5px 10px 5px 5px !important;
     font-size: 16px; background: #4f67cd; color: #fff;} 
     .side-menu i {font-size: 16px;}
-    
+    label {font-weight: 500;}
