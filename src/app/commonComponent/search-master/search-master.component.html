@@ -3,7 +3,7 @@
     <div class="col-md-12">
 
         <div class="mb-3">
-            <label for="year" class="form-label">Year :</label>
+            <label for="year" class="form-label">Year </label>
             <select class="form-select form-select-sm" id="sel1" name="sellist1">
                 <option value="2021-22">2021-22</option>
                 <option value="2020-21">2020-21</option>
@@ -21,8 +21,8 @@
      <ng-container *ngIf="isHideShowStateSelectDropDown || isHideShowDistSelectDropDown || isHideShowblckSelectDropDown || isHideShowParlSelectDropDown">
     <div class="col-md-12">
         <div class="mb-3">
-            <label for="state" class="form-label">State :</label>
-            <select class="form-select form-select-sm" id="sel1" name="sellist1" (change)="districtListStateIdWise($event)">
+            <label for="state" class="form-label">State </label>
+            <select class="form-select form-select-sm" id="sel1" name="sellist1">
                 <option value="national" selected>All India/National</option>
                 <option value="all">State-wise</option>
                 <option *ngFor="let state of stateList.rowValue" [value]="state.udise_state_code">{{state.state_name}}</option>
@@ -35,8 +35,8 @@
 <ng-container *ngIf="isHideShowDistSelectDropDown || isHideShowblckSelectDropDown || isHideShowParlSelectDropDown ">
      <div class="col-md-12">
         <div class="mb-3">
-            <label for="district" class="form-label">District:</label>
-            <select class="form-select form-select-sm" id="sel1" name="sellist1"  (change)="blockListDistIdWise($event)">
+            <label for="district" class="form-label">District</label>
+            <select class="form-select form-select-sm" id="sel1" name="sellist1">
                 <option value="" selected disabled>Select District</option>
                 <option>1</option>
                 <option>2</option>
@@ -50,7 +50,7 @@
 <ng-container *ngIf="isHideShowblckSelectDropDown || isHideShowParlSelectDropDown">
     <div class="col-md-12">
         <div class="mb-3">
-            <label for="block" class="form-label">Block:</label>
+            <label for="block" class="form-label">Block</label>
             <select class="form-select form-select-sm" id="sel1" name="sellist1">
                 <option value="" selected disabled>Select Block</option>
                 <option>1</option>
@@ -64,7 +64,7 @@
 <ng-container *ngIf="isHideShowParlSelectDropDown">
     <div class="col-md-12">
         <div class="mb-3">
-            <label for="block" class="form-label">parliamentary:</label>
+            <label for="block" class="form-label">parliamentary</label>
             <select class="form-select form-select-sm" id="sel1" name="sellist1">
                 <option value="" selected disabled>Select Parliamentary</option>
                 <option>1</option>
@@ -76,4 +76,21 @@
     </div>
 </ng-container>
 
+  </div>
+<span style="font-weight: 500;">Value Type</span>
+
+  
+  <div>
+    <label class="form-check-label" for="flexCheckDefault">
+        Parcentage:
+    </label>
+    <input class="form-check-input" type="radio" value="1">
+
+    <label class="form-check-label" for="flexCheckDefault">
+        Absolute:
+    </label>
+    <input class="form-check-input" type="radio" value="2">
+
+    <hr>
+     
   </div>

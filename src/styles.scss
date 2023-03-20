@@ -65,11 +65,15 @@ button, button:focus, button:hover {outline: none;
 
 
 .card {clear: both; border-radius: 4px;}
-.card-header {background-color: #028E77; font-weight: 600; color: #fff; text-transform: uppercase; line-height: 38px;}
-.card thead th {background-color:#ccc !important;}
-
+.card-header {background-color: #1b9493; font-weight: 600; color: #fff; text-transform: uppercase; line-height: 38px;}
+.card thead th {background-color:#ccc ;}
 .tabular-wrap{padding:10px}
 .tabular-wrap .card{height: 67.5vh; padding: 15px; margin-bottom:0px;}
+
+.ag-root-wrapper.ag-layout-normal{background: #fff;
+    // border-radius: 8px !important;
+    /* box-shadow: 0px 10px 8px -3px #ccc;*/ border: none;}
+    .ag-header{background:#E2E8F0;; color:#2B3447; font-size: 15px; text-transform: uppercase;}
 
 /***************Report Landing Page css*************/
 .container{
@@ -128,6 +132,9 @@ box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);}
 .school-report .section-title{color: #192D89;}
 .school-report .section-title:after{  background: #192D89;}
 .teacher-report .report-heading-section{background-color:#1b9493}
+
+.school-report .report-heading-section:before{background:url(assets/images/wave-lt-light.svg) no-repeat 0 0; background-size: 100%;}
+.school-report .report-heading-section:after{ background:url(assets/images/wave-lt-light.svg) no-repeat right 0; background-size: 100%;}
 /**report table section****/
 
 .report-table-section{margin-top:-224px; padding-bottom:40px; position:relative; z-index:1;}

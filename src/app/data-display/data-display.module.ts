@@ -7,6 +7,11 @@ import { ChartComponent } from './chart/chart.component'
 import { AgGridModule } from 'ag-grid-angular';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { SearchMasterComponent } from '../commonComponent/search-master/search-master.component';
+import { SelectButtonModule } from "primeng/selectbutton";
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from "primeng/button";
+
+
 
 
 @NgModule({
@@ -20,7 +25,11 @@ import { SearchMasterComponent } from '../commonComponent/search-master/search-m
     CommonModule,
     DataDisplayRoutingModule,
     AgGridModule,
+    SelectButtonModule,
     HighchartsChartModule,
+    FormsModule,
+    ButtonModule,
+    
   ]
 })
 export class DataDisplayModule { }
