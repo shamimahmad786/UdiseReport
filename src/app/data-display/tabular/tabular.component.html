@@ -1,32 +1,28 @@
 <div class="tabular-wrap">
     <div class="container-flued">
-      <a href="" class="btn btn-border float-start "><i
+        <a href="" class="btn btn-border float-start "><i
                         class="bi bi-arrow-left"></i> Back </a>
-                        <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border side-menu float-end mb-1 rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i> Menu</a>
+        <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border side-menu float-end mb-1 rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i> Menu</a>
         <div class="card p-0">
-           
+
             <div class="card-header d-flex justify-content-between">
-                        <h5 class="m-0">Tabular</h5>
-                    
-               
-            </div> 
-             
+                <h5 class="m-0">Tabular</h5>
+
+
+            </div>
+
             <div class="container-fluid">
                 <div class="row flex-nowrap">
-                   
+
                     <main class="col ps-md-2 pt-2">
-                       
-                       
+
+
                         <div class="row">
                             <div class="col-12">
                                 <div class="card-body">
-                                    <!-- <app-search-master [locationType]="locationType"></app-search-master> -->
-                                    <ag-grid-angular style="width: 100%; height: 52.5vh;" class="ag-theme-alpine" [columnDefs]="columnDefs"
-                                        [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]=""
-                                        [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
-                                    <!-- <ag-grid-angular style="width: 100%; height: 52.5vh;"
-                                     class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" 
-                                     [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="true" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular> -->
+
+                                    <ag-grid-angular style="width: 100%; height: 52.5vh;" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
+
                                 </div>
                             </div>
                         </div>
@@ -43,12 +39,12 @@
                                     <option value="4">Parliament Wise</option>
                                     <option value="5">City Wise</option>
                                   </select>
-                                  <app-search-master [locationType]="locationType"></app-search-master>
+                                <app-search-master [locationType]="locationType"></app-search-master>
                             </div>
 
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -73,4 +69,3 @@
         </div>
     </div>
 </div>
-
