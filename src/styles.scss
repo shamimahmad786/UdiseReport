@@ -71,8 +71,8 @@ button, button:focus, button:hover {outline: none;
 .tabular-wrap .card{height: 67.5vh; padding: 15px; margin-bottom:0px;}
 
 .ag-root-wrapper.ag-layout-normal{background: #fff;
-    border-radius: 8px !important;
-    box-shadow: 0px 10px 8px -3px #ccc;}
+    // border-radius: 8px !important;
+    /* box-shadow: 0px 10px 8px -3px #ccc;*/ border: none;}
     .ag-header{background:#E2E8F0;; color:#2B3447; font-size: 15px; text-transform: uppercase;}
 
 /***************Report Landing Page css*************/
