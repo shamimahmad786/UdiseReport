@@ -149,13 +149,7 @@ ngOnInit(): void
 
 
     }
-    gfg: any[];
-    constructor(private primeNGConfig: PrimeNGConfig) {
-        this.gfg = [
-            { geek: 'True' },
-            { geek: 'False' },
-        ];
-      }
+
 
 
   ngOnChanges(){
