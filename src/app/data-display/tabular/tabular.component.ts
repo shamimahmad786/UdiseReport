@@ -54,19 +54,19 @@ export class TabularComponent {
 
 
   onGridReady(params: GridReadyEvent<any>) {
-  //   this.gridColumnApi = params.columnApi;
+    this.gridColumnApi = params.columnApi;
 
-  //   this.http
-  //     .get<IOlympicData[]>(
-  //       'https://www.ag-grid.com/example-assets/olympic-winners.json'
-  //     )
-  //     .subscribe((data) => (this.rowData = data));
+    this.http
+      .get<IOlympicData[]>(
+        'https://www.ag-grid.com/example-assets/olympic-winners.json'
+      )
+      .subscribe((data) => (this.rowData = data));
     
 
-  //  // params.api.setColumnDefs(this.columnDefs);
-  //  // params.api.setRowData(this.rowData);
-  //  // params.api.setSideBar([])
-  //   // params.api.
+   // params.api.setColumnDefs(this.columnDefs);
+   // params.api.setRowData(this.rowData);
+   // params.api.setSideBar([])
+    // params.api.
   }
 
   getLocationType(event:any){
