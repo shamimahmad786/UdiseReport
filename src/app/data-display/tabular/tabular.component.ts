@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ColDef, ColumnApi, GridReadyEvent, SideBarDef } from 'ag-grid-community';
 import { IOlympicData } from '../../data-display/interface';
 import 'ag-grid-enterprise';
+import {TabularDataService} from '../../service/tabular-data-service.component';
 
 @Component({
   selector: 'app-tabular',
@@ -10,13 +11,18 @@ import 'ag-grid-enterprise';
   styleUrls: ['./tabular.component.scss']
 })
 export class TabularComponent {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tabularDataService:TabularDataService) { }
 
   private gridColumnApi!: ColumnApi;
   locationType:any
+  agGridHeader:any[]=[];
+  displaySet:any[]=[];
+  templateType:any;
+  childArray:any[]=[];
+
 
   ngOnInit() {
-    alert("called");
+    this.getTabularData();
   }
 
 
@@ -31,8 +37,8 @@ export class TabularComponent {
   ];
  
   public defaultColDef: ColDef = {
-    flex: 1,
-    minWidth: 150,
+    // flex: 1,
+    // minWidth: 150,
     sortable: true,
     filter: true,
     resizable: true,
@@ -48,23 +54,102 @@ export class TabularComponent {
 
 
   onGridReady(params: GridReadyEvent<any>) {
-    this.gridColumnApi = params.columnApi;
+  //   this.gridColumnApi = params.columnApi;
 
-    this.http
-      .get<IOlympicData[]>(
-        'https://www.ag-grid.com/example-assets/olympic-winners.json'
-      )
-      .subscribe((data) => (this.rowData = data));
+  //   this.http
+  //     .get<IOlympicData[]>(
+  //       'https://www.ag-grid.com/example-assets/olympic-winners.json'
+  //     )
+  //     .subscribe((data) => (this.rowData = data));
     
 
-   // params.api.setColumnDefs(this.columnDefs);
-   // params.api.setRowData(this.rowData);
-   // params.api.setSideBar([])
-    // params.api.
+  //  // params.api.setColumnDefs(this.columnDefs);
+  //  // params.api.setRowData(this.rowData);
+  //  // params.api.setSideBar([])
+  //   // params.api.
   }
 
   getLocationType(event:any){
     this.locationType = event.target.value;
   }
+
+  getTabularData(){
+    const data={"mapId":1001,"paramType":"N"};
+    this.tabularDataService.getTabularData(data).subscribe((res) => {
+console.log("res--->"+JSON.stringify(res));
+this.rowData=res.rowValue;
+this.displaySet=res.displaySet;
+this.templateType=res.templateType;
+this.generateHeader(res.columnName);
+    })
+  }
+
+  generateHeader(data:any){
+
+    
+
+    if(this.templateType=="1"){
+
+    }
+
+    // alert("Header Generate");
+    debugger;
+
+    for(let i=0;i<data.length;i++){
+      var matchCondition=false;
+      var colName=data[i];
+      if(this.agGridHeader.length==0 && JSON.parse(JSON.stringify(this.displaySet[i])).parentType=="Y"){
+          this.childArray[0]=({"field":data[i], "headerName":JSON.parse(JSON.stringify(this.displaySet[i])).columnName,enableValue: true,"width":JSON.parse(JSON.stringify(this.displaySet[i])).width});
+          this.agGridHeader[i]={"headerName":JSON.parse(JSON.stringify(this.displaySet[i])).parentName, "children":this.childArray };
+     
+      }else
+      if(JSON.parse(JSON.stringify(this.displaySet[i])).parentType=="Y"){
+           
+        for(let j=0;j<this.agGridHeader.length;j++){
+if(this.agGridHeader[j].headerName==JSON.parse(JSON.stringify(this.displaySet[i])).parentName){
+  this.childArray=this.agGridHeader[j].children;
+  var childLength=(this.agGridHeader[j].children).length;
+  this.childArray[childLength]=({"field":data[i], "headerName":JSON.parse(JSON.stringify(this.displaySet[i])).columnName,enableValue: true,"width":JSON.parse(JSON.stringify(this.displaySet[i])).width});
+  this.agGridHeader[j].children= this.childArray;
+  matchCondition=true;
+
+}
+              }
+              if(!matchCondition){
+                this.childArray=[];
+                this.childArray[0]=({"field":data[i], "headerName":JSON.parse(JSON.stringify(this.displaySet[i])).columnName,enableValue: true,"width":JSON.parse(JSON.stringify(this.displaySet[i])).width});
+               var agGridLength=this.agGridHeader.length;
+                this.agGridHeader[agGridLength]={"headerName":JSON.parse(JSON.stringify(this.displaySet[i])).parentName, "children":this.childArray };
+              }
+
+      }else{
+        var gridHeaderLength=this.agGridHeader.length;
+// alert("in else-->"+gridHeaderLength)
+
+      this.agGridHeader[gridHeaderLength]=({"field":data[i], "headerName":JSON.parse(JSON.stringify(this.displaySet[i])).columnName,enableValue: true,"width":JSON.parse(JSON.stringify(this.displaySet[i])).width});
+      }
+
+
+      // alert("Generated Header loop--->"+JSON.stringify(this.agGridHeader)+"----------"+this.agGridHeader.length);
+
+    }
+
+   
+    // alert("Generated Header--->"+JSON.stringify(this.agGridHeader));
+    // console.log("Generated Header--->"+JSON.stringify(this.agGridHeader));
+    
+
+    this.columnDefs=this.agGridHeader;
+    // alert(JSON.stringify(this.rowData));
+    
+  }
+
+
+
+
+
+
+
+
 
 }
