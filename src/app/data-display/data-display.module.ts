@@ -10,6 +10,7 @@ import { SearchMasterComponent } from '../commonComponent/search-master/search-m
 import { SelectButtonModule } from "primeng/selectbutton";
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from "primeng/button";
+import {TabularDataService} from "../service/tabular-data-service.component";
 
 
 
@@ -20,6 +21,7 @@ import { ButtonModule } from "primeng/button";
     TabularComponent,
     ChartComponent,
     SearchMasterComponent
+    // TabularDataService
   ],
   imports: [
     CommonModule,

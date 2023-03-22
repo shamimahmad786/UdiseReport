@@ -1,8 +1,7 @@
 <div class="tabular-wrap">
     <div class="container-flued">
         <a href="" class="btn btn-border float-start "><i class="bi bi-arrow-left"></i> Back </a>
-        <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse"
-            class="border side-menu float-end mb-1 rounded-3 p-1 text-decoration-none"><i
+        <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border side-menu float-end mb-1 rounded-3 p-1 text-decoration-none"><i
                 class="bi bi-list bi-lg py-2 p-1"></i> Report Filter</a>
         <div class="card p-0">
             <div class="card-header d-flex justify-content-between">
@@ -13,27 +12,23 @@
             <div class="container-fluid">
                 <div class="row flex-nowrap">
 
-                 
-                                <div class="card-body  p-0">
-                                    <!-- <app-search-master [locationType]="locationType"></app-search-master> -->
-                                    <ag-grid-angular style="width: 100%; height: 56vh;" class="ag-theme-alpine"
-                                        [columnDefs]="columnDefs" [defaultColDef]="defaultColDef"
-                                        [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="" [rowData]="rowData"
-                                        (gridReady)="onGridReady($event)"></ag-grid-angular>
-                                    <!-- <ag-grid-angular style="width: 100%; height: 52.5vh;"
+
+                    <div class="card-body  p-0">
+                        <!-- <app-search-master [locationType]="locationType"></app-search-master> -->
+                        <ag-grid-angular style="width: 100%; height: 56vh;" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
+                        <!-- <ag-grid-angular style="width: 100%; height: 52.5vh;"
                                      class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" 
                                      [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="true" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular> -->
-                                </div>
-                   
-              
+                    </div>
+
+
                 </div>
 
                 <div id="sidebar" class="collapse collapse-horizontal border-end">
                     <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start">
                         <div class="mb-3">
-                        <label for="state" class="form-label">Location Type Search </label>
-                        <select class="form-select form-select-sm" id="sel1" name="sellist1"
-                            (change)="getLocationType($event)">
+                            <label for="state" class="form-label">Location Type Search </label>
+                            <select class="form-select form-select-sm" id="sel1" name="sellist1" (change)="getLocationType($event)">
                             <option value="national" selected>All India/National</option>
                             <option value="1">State Wise</option>
                             <option value="2">District Wise</option>
@@ -41,18 +36,16 @@
                             <option value="4">Parliament Wise</option>
                             <option value="5">City Wise</option>
                         </select>
-                    </div>
+                        </div>
                         <app-search-master [locationType]="locationType"></app-search-master>
                     </div>
-
-
                 </div>
             </div>
 
 
-   
 
-            </div>
 
         </div>
+
     </div>
+</div>

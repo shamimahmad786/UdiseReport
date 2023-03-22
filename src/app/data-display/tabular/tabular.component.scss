@@ -1,20 +1,58 @@
 #sidebar {
+    position: absolute;
+    right: 0;
+    background: #fff;
+    padding: 15px;
+    height: 100%;
+    z-index: 999;
+    overflow: auto;
+    top: 0;
+    border-left: solid 1px #ccc;
+}
 
-  position: absolute;
-  right: 0;
-  background: #fff;
-  padding: 15px;
-  height: 100%;
-  z-index: 999;
-  overflow-y: auto;
-  top: 0;
-  border-left: solid 1px #ccc;
-  }
+#sidebar-nav { width: 300px;}
 
-  #sidebar-nav { width: 300px;}
-
-  .side-menu {width: auto;
+.side-menu {
+    width: auto;
     padding: 5px 10px 5px 5px !important;
-    font-size: 16px; background: #4f67cd; color: #fff;} 
-    .side-menu i {font-size: 16px;}
-    label {font-weight: 500;}
+    font-size: 16px;
+    background: #4f67cd;
+    color: #fff;
+}
+
+.side-menu i {
+    font-size: 16px;
+}
+
+label {
+    font-weight: 500;
+}
+
+::ng-deep .ag-pivot-off .ag-header-group-cell .ag-header-group-cell-label {
+    font-size: 14px;
+    color: #000;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+}
+
+::ng-deep .ag-header-group-cell-with-group {
+    border-right: 1px solid black;
+}
+
+::ng-deep .ag-theme-balham {
+    --ag-odd-row-background-color: #E04F00;
+}
+
+::ng-deep .ag-theme-balham .ag-row-odd {
+    background-color: #ffff !important;
+}
+
+::ng-deep .ag-theme-balham .ag-row-even {
+    background-color: #ffff !important;
+}
+
+::ng-deep .ag-row:nth-child(odd) {
+    background-color: #ffff !important;
+}
