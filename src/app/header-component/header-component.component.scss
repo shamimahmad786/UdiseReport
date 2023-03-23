@@ -87,8 +87,16 @@
 }
 .navbar-toggler-icon{filter: invert(1);}
 
-.container-flued{padding: 0 10px;}
+.container-flued{padding: 0 20px;}
+.navbar-toggler:focus{box-shadow: none;}
+@media (max-width: 1680px) {
+
+
+}
+
 
 @media (max-width: 991px) {
 	.navbar{padding: 5px 0;}
+.header-top .container-flued {justify-content: center !important;}
+  .logo {width: 90%;}
   }

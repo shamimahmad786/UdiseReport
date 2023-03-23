@@ -1,4 +1,21 @@
-.nav-tabs{bottom:50px; left:11px; position: relative; float: left; border: none;  
-   background:#E2E8F0;; color:#2B3447;  width: calc(100% - 22px)}
+.nav-tabs{bottom:62px; left:21px; position: relative; float: left; border: none;  
+   background:#fff; color:#2B3447;  width: calc(100% - 42px) ; border-top:solid 1px #ccc;}
 .nav-tabs .nav-link {border-radius: 0; border: none; color: #333;} 
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{background-color: #cadaef}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{background-color: #cadaef;     background-color: #394EA5;
+   color: #fff;
+}
+
+
+@media (max-width: 1680px) {
+   .nav-tabs{bottom:52px; }
+   .nav-tabs .nav-link { padding: 5px 16px;; font-size: 14px;}
+
+}
+
+@media (max-width: 767px) {
+   .nav-tabs{bottom: 30px;
+      background: #fff;
+      border-bottom: solid 1px #ccc;}
+   
+
+}
