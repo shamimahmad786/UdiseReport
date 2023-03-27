@@ -4,9 +4,7 @@
         <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" (click)="filterCollapse()" class="border side-menu float-end mb-1 rounded-3 p-1 text-decoration-none"><i
                 class="bi bi-list bi-lg py-2 p-1"></i> Report Filter</a>
         <div class="card p-0">
-            <div class="card-header d-flex justify-content-between">
-                <h5 class="m-0 pt-1 pb-1">Tabular</h5>
-            </div>
+
 
 
             <div class="container-fluid">
@@ -15,7 +13,7 @@
 
                     <div class="card-body  p-0">
                         <!-- <app-search-master [locationType]="locationType"></app-search-master> -->
-                        <ag-grid-angular style="width: 100%; height: 56vh;" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
+                        <ag-grid-angular style="width: 100%; height: 67.7vh;" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
                         <!-- <ag-grid-angular style="width: 100%; height: 52.5vh;"
                                      class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" 
                                      [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="true" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular> -->
