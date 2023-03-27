@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input,Output,EventEmitter } from '@angular/core';
 import { PrimeNGConfig } from "primeng/api";
-
+import {MasterDataService} from '../../service/master-data-service.component';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-search-master',
   templateUrl: './search-master.component.html',
@@ -9,6 +10,8 @@ import { PrimeNGConfig } from "primeng/api";
 export class SearchMasterComponent {
 
    stateList:any=[]; 
+   districtList:any=[];
+   blockList:any=[];
    @Input() locationType:any;
    isDisableSelectDistDropDown:boolean=true;
    isDisableSelectBlockDropDown:boolean=true; 
@@ -16,10 +19,32 @@ export class SearchMasterComponent {
    isHideShowDistSelectDropDown:boolean=false; 
    isHideShowblckSelectDropDown:boolean=false;
    isHideShowParlSelectDropDown:boolean=false; 
-
+   managementDisplayType:any;
+   reportYear:any;
+   radioTypeValue:any;
+   categorytype:any;
+   managementTypeValue:any;
+   reportStateId:any;
+   reportDistrictId:any;
+   reportBlockId:any;
+   reportParliamentId:any;
+   managementValue:any;
+   @Input() abcd: any;
+   @Output() reportJson = new EventEmitter<any>();
+   constructor(private http: HttpClient, private masterDataService:MasterDataService) { }
       
 ngOnInit(): void
     {
+
+      this.managementDisplayType=0;
+      this.reportYear="2021";
+      this.radioTypeValue=1;
+      this.categorytype=2;
+      this.managementTypeValue=0;
+      this.managementValue=1;
+
+      // alert("filter--->"+JSON.stringify(sessionStorage.getItem("filterConfig")));
+
       this.stateList=
       {
         "columnName": ["state_name", "udise_state_code"],
@@ -37,7 +62,7 @@ ngOnInit(): void
           "udise_state_code": "18"
         }, {
           "state_name": "Bihar",
-          "udise_state_code": "10"
+          "udise_state_code": "110"
         }, {
           "state_name": "Chandigarh",
           "udise_state_code": "04"
@@ -154,7 +179,24 @@ ngOnInit(): void
 
   ngOnChanges(){
     debugger
+
+    // alert(this.locationType);
+    this.isHideShowStateSelectDropDown=false;
+    this.isHideShowDistSelectDropDown=false;
+    this.isHideShowblckSelectDropDown=false;
+    this.isHideShowParlSelectDropDown=false;
+
+    if(this.locationType>0){
+   this.getStateYearWise();
+    }
+
     switch(this.locationType){
+      case "0":
+        this.isHideShowStateSelectDropDown=false;
+        this.isHideShowDistSelectDropDown=false;
+        this.isHideShowblckSelectDropDown=false;
+        this.isHideShowParlSelectDropDown=false;
+        break;
       case "1":
         this.isHideShowStateSelectDropDown=true;
         this.isHideShowDistSelectDropDown=false;
@@ -162,17 +204,78 @@ ngOnInit(): void
         break;
         case "2":
         this.isHideShowDistSelectDropDown=true;
-        this.isHideShowblckSelectDropDown=false;
+        this.isHideShowblckSelectDropDown=false
         break;
         case "3":
           this.isHideShowblckSelectDropDown=true;
           this.isHideShowParlSelectDropDown=false
           break;
-          case "4":
-            this.isHideShowParlSelectDropDown=true;
-            break;
+       case "4":
+        this.isHideShowParlSelectDropDown=true;
+        break;
     }
 
+    console.log('data coming', this.abcd)
+
+    if(this.abcd){
+      this.filterConfiguration(this.abcd);
+    }
   }
+
+  filterConfiguration(filterData:any){
+
+  }
+
+  managementType(event:any){
+    this.managementDisplayType=event.target.value;
+    alert("called management Type");
+  }
+
+  getFilteredData(){
+
+    const dependencyData={'stateId':this.reportStateId,'districtId':this.reportDistrictId,'blockId':this.reportBlockId,'parliamentId':this.reportParliamentId,'paramValue':'as'};
+    const data={"mapId":"1001","reportFor":this.locationType,"initYear":this.reportYear,"valueType":this.radioTypeValue,"cateoryType":this.categorytype,"managementType":this.managementTypeValue,"managementValue":this.managementValue,"dependency":dependencyData};
+
+    this.reportJson.emit(data);
+
+    alert("Get filtered Data");
+  }
+
+  getStateYearWise(){
+    // alert("called");
+    const data={"yearId":this.reportYear};
+    this.masterDataService.getStateYearWise(data).subscribe((res) => {
+// alert("get state--->"+JSON.stringify(res));
+
+this.stateList=res.rowValue;
+
+          })
+  }
+
+  getDistrictYearWise(){
+    const data={"yearId":this.reportYear,"stateId":this.reportStateId};
+    this.masterDataService.getDistrictYearWise(data).subscribe((res) => {
+      // alert("get district"+JSON.stringify(res));
+      this.districtList=res.rowValue;
+          })
+  }
+
+  getBlockYearWise(){
+    const data={"yearId":this.reportYear,"stateId":this.reportStateId,"districtId":this.reportDistrictId};
+    this.masterDataService.getBlockYearWise(data).subscribe((res) => {
+      // alert("get block"+JSON.stringify(res));
+      this.blockList=res.rowValue;
+          })
+  }
+
+  managementValueType(event:any){
+this.managementValue=event.target.value;
+alert(this.managementValue);
+  }
+
+
+
+
+
 
 }

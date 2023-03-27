@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component ,ViewChild, Output, EventEmitter, Input} from '@angular/core';
 import { ColDef, ColumnApi, GridReadyEvent, SideBarDef } from 'ag-grid-community';
 import { IOlympicData } from '../../data-display/interface';
 import 'ag-grid-enterprise';
 import {TabularDataService} from '../../service/tabular-data-service.component';
+import {SearchMasterComponent} from '../../commonComponent/search-master/search-master.component';
 
 @Component({
   selector: 'app-tabular',
   templateUrl: './tabular.component.html',
   styleUrls: ['./tabular.component.scss']
+  
 })
 export class TabularComponent {
   constructor(private http: HttpClient, private tabularDataService:TabularDataService) { }
@@ -19,11 +21,18 @@ export class TabularComponent {
   displaySet:any[]=[];
   templateType:any;
   childArray:any[]=[];
+  filterConfig:any;
 
+  // @ViewChild(SearchMasterComponent)  children: SearchMasterComponent ; 
+
+  abc: any; 
 
   ngOnInit() {
-    this.getTabularData();
+    sessionStorage.setItem("filterConfig","A");
+    this.getTabularData("1001");
+    
   }
+
 
 
   public columnDefs: ColDef[] = [
@@ -73,13 +82,24 @@ export class TabularComponent {
     this.locationType = event.target.value;
   }
 
-  getTabularData(){
-    const data={"mapId":1001,"paramType":"N"};
-    this.tabularDataService.getTabularData(data).subscribe((res) => {
+  getTabularData(mapId:any){
+
+    alert("MapId----->"+JSON.stringify(mapId));
+
+    // mapId=1001
+    // const data={"mapId":mapId,"paramType":"N"};
+
+    // if(mapId==1001){
+    //   this.filterConfig=""
+    // }
+    this.tabularDataService.getTabularData(mapId).subscribe((res) => {
 console.log("res--->"+JSON.stringify(res));
 this.rowData=res.rowValue;
 this.displaySet=res.displaySet;
 this.templateType=res.templateType;
+this.filterConfig=res.filterData;
+
+// alert("filter Data---->"+JSON.stringify(this.filterConfig));
 this.generateHeader(res.columnName);
     })
   }
@@ -136,7 +156,7 @@ if(this.agGridHeader[j].headerName==JSON.parse(JSON.stringify(this.displaySet[i]
 
    
     // alert("Generated Header--->"+JSON.stringify(this.agGridHeader));
-    // console.log("Generated Header--->"+JSON.stringify(this.agGridHeader));
+    console.log("Generated Header--->"+JSON.stringify(this.agGridHeader));
     
 
     this.columnDefs=this.agGridHeader;
@@ -145,7 +165,11 @@ if(this.agGridHeader[j].headerName==JSON.parse(JSON.stringify(this.displaySet[i]
   }
 
 
-
+  filterCollapse(){
+    // alert("called filter collapse");
+    this.abc = "{'shamim':'Y'}"+Math.random();
+    sessionStorage.setItem("filterConfig",this.filterConfig);
+  }
 
 
 

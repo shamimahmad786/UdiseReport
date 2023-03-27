@@ -1,96 +1,189 @@
-
-  <div class="row ">
+<div class="row ">
     <div class="col-md-12">
 
         <div class="mb-3">
             <label for="year" class="form-label">Year </label>
-            <select class="form-select form-select-sm" id="sel1" name="sellist1">
-                <option value="2021-22">2021-22</option>
-                <option value="2020-21">2020-21</option>
-                <option value="2019-20">2019-20</option>
-                <option value="2018-19">2018-19</option>
-                <option value="2017-18">2017-18</option>
-                <option value="2016-17">2016-17</option>
-                <option value="2015-16">2015-16</option>
+            <select class="form-select form-select-sm" [(ngModel)]="reportYear" id="sel1" name="sellist1">
+                
+                <option value="2021">2021-22</option>
+                <option value="2020">2020-21</option>
+                <option value="2019">2019-20</option>
+                <option value="2018">2018-19</option>
+                <option value="2017">2017-18</option>
+                <option value="2016">2016-17</option>
+                <option value="2015">2015-16</option>
               </select>
-          </div>
+        </div>
 
-      
-        
+
+
     </div>
-     <ng-container *ngIf="isHideShowStateSelectDropDown || isHideShowDistSelectDropDown || isHideShowblckSelectDropDown || isHideShowParlSelectDropDown">
-    <div class="col-md-12">
-        <div class="mb-3">
-            <label for="state" class="form-label">State </label>
-            <select class="form-select form-select-sm" id="sel1" name="sellist1">
-                <option value="national" selected>All India/National</option>
+    <ng-container *ngIf="isHideShowStateSelectDropDown || isHideShowDistSelectDropDown || isHideShowblckSelectDropDown || isHideShowParlSelectDropDown">
+        <div class="col-md-12">
+            <div class="mb-3">
+                <label for="state" class="form-label">State </label>
+                <select class="form-select form-select-sm" [(ngModel)]="reportStateId" id="sel1" (change)="getDistrictYearWise()" name="sellist1">
+                <option value="0" selected>All India/National</option>
                 <option value="all">State-wise</option>
-                <option *ngFor="let state of stateList.rowValue" [value]="state.udise_state_code">{{state.state_name}}</option>
+                <option *ngFor="let state of stateList" [value]="state.state_id">{{state.state_name}}</option>
               </select>
-          </div>
-        
-    </div>
-</ng-container>
+            </div>
 
-<ng-container *ngIf="isHideShowDistSelectDropDown || isHideShowblckSelectDropDown || isHideShowParlSelectDropDown ">
-     <div class="col-md-12">
-        <div class="mb-3">
-            <label for="district" class="form-label">District</label>
-            <select class="form-select form-select-sm" id="sel1" name="sellist1">
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="isHideShowDistSelectDropDown || isHideShowblckSelectDropDown || isHideShowParlSelectDropDown ">
+        <div class="col-md-12">
+            <div class="mb-3">
+                <label for="district" class="form-label">District</label>
+                <select class="form-select form-select-sm" id="sel1" [(ngModel)]="reportDistrictId" c (change)="getBlockYearWise()" name="sellist1">
                 <option value="" selected disabled>Select District</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+                <option value="0">All District</option>
+                <option *ngFor="let district of districtList" [value]="district.district_id">{{district.district_name}}</option>
               </select>
-          </div>
-        
-    </div>
-</ng-container>
-<ng-container *ngIf="isHideShowblckSelectDropDown || isHideShowParlSelectDropDown">
-    <div class="col-md-12">
-        <div class="mb-3">
-            <label for="block" class="form-label">Block</label>
-            <select class="form-select form-select-sm" id="sel1" name="sellist1">
-                <option value="" selected disabled>Select Block</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-          </div>
-    </div>
-</ng-container>
-<ng-container *ngIf="isHideShowParlSelectDropDown">
-    <div class="col-md-12">
-        <div class="mb-3">
-            <label for="block" class="form-label">parliamentary</label>
-            <select class="form-select form-select-sm" id="sel1" name="sellist1">
+            </div>
+
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isHideShowblckSelectDropDown || isHideShowParlSelectDropDown">
+        <div class="col-md-12">
+            <div class="mb-3">
+                <label for="block" class="form-label">Block</label>
+                <select class="form-select form-select-sm" id="sel1" [(ngModel)]="reportDistrictId" c (change)="getBlockYearWise()" name="sellist1">
+                    <option value="" selected disabled>Select District</option>
+                    <option value="0">All District</option>
+                    <option *ngFor="let block of blockList" [value]="block.block_id">{{block.block_name}}</option>
+                  </select>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isHideShowParlSelectDropDown">
+        <div class="col-md-12">
+            <div class="mb-3">
+                <label for="block" class="form-label">parliamentary</label>
+                <select class="form-select form-select-sm" id="sel1" [(ngModel)]="reportParliamentId" name="sellist1">
                 <option value="" selected disabled>Select Parliamentary</option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
               </select>
-          </div>
-    </div>
-</ng-container>
+            </div>
+        </div>
+    </ng-container>
 
-  </div>
+</div>
 <span style="font-weight: 500;">Value Type</span>
 
-  
-  <div>
-    <label class="form-check-label" for="flexCheckDefault">
-        Parcentage:
-    </label>
-    <input class="form-check-input" type="radio" value="1">
+
+<div>
 
     <label class="form-check-label" for="flexCheckDefault">
         Absolute:
     </label>
-    <input class="form-check-input" type="radio" value="2">
+    <input class="form-check-input" name="valueTypeRadio" [checked]="radioTypeValue == 1 ? true : false" type="radio" value="1">
+    <label class="form-check-label" for="flexCheckDefault">
+        Parcentage:
+    </label>
+    <input class="form-check-input" name="valueTypeRadio" [checked]="radioTypeValue == 2 ? true : false" type="radio" value="2">
 
     <hr>
-     
-  </div>
+
+</div>
+
+<ng-container>
+    <div class="col-md-12">
+        <div class="mb-3">
+            <label for="block" class="form-label">Category Type</label>
+            <select class="form-select form-select-sm" [(ngModel)]="categorytype" id="sel1" name="sellist1">
+                <option value="9">None</option>
+                <option value="0" selected>All</option>
+                <option value="1">General</option>
+                <option value="2">SC</option>
+                <option value="3">ST</option>
+                <option value="4">OBC</option>
+            </select>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container>
+    <div class="col-md-12">
+        <div class="mb-3">
+            <label for="block" class="form-label">Management Type</label>
+            <select class="form-select form-select-sm" id="sel1" [(ngModel)]="managementTypeValue" (change)="managementType($event)" name="sellist1">
+                <option value="9">None</option>
+                <option value="1">Broad</option>
+                <option value="2">Central</option>
+            </select>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="managementDisplayType==1">
+
+    <label for="block" class="form-label">Broad Type</label>
+    <select class="form-select form-select-sm" id="sel1" [(ngModel)]="managementValue" (change)="managementValueType($event)" name="sellist1">
+        <option value="0">All</option>
+        <option value="1">Govt</option>
+        <option value="2">Government Aided </option>
+        <option value="3">Private Unaided (Recognized) </option>
+        <option value="4">Other</option>
+    </select>
+
+    <!-- <div class="form-check">
+        <input class="form-check-input" type="radio" name="broadRadios" id="exampleRadios1" value="1">
+        <label class="form-check-label" for="exampleRadios1">
+          Broad Type 1
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="broadRadios" id="exampleRadios3" value="2">
+        <label class="form-check-label" for="exampleRadios3">
+        Broad Type 4
+        </label>
+    </div> -->
+</ng-container>
+
+
+<ng-container *ngIf="managementDisplayType==2">
+
+    <select class="form-select form-select-sm" id="sel1" [(ngModel)]="managementValue" (change)="managementValueType($event)" name="sellist1">
+        <option value="0">All</option>
+        <option value="1">Department of Education </option>
+        <option value="2">Tribal Welfare Department </option>
+        <option value="3">Local body </option>
+        <option value="4">Other Govt. managed schools </option>
+        <option value="5">Central Government</option>
+        <option value="6">Social welfare Department </option>
+        <option value="7">Ministry of Labor</option>
+        <option value="8">Kendriya Vidyalaya / Central School </option>
+        <option value="9">Jawahar Navodaya Vidyalaya</option>
+        <option value="10">Sainik School</option>
+        <option value="11">Railway School</option>
+        <option value="12">Central Tibetan School</option>
+        <option value="13">Other Central Govt. Schools</option>
+        <option value="14">Government Aided</option>
+        <option value="15">Private Unaided (Recognized)</option>
+        <option value="16">Unrecognized</option>
+        <option value="17">Madarsa recognized (by Wakf board/Madarsa Board)</option>
+        <option value="18">Madarsa unrecognized </option>
+    </select>
+
+    <!-- <div class="form-check">
+        <input class="form-check-input" type="radio" name="centralRadios" id="exampleRadios1" value="1">
+        <label class="form-check-label" for="exampleRadios1">
+          Central Type 1
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="centralRadios" id="exampleRadios3" value="2">
+        <label class="form-check-label" for="exampleRadios3">
+        Central Type 17
+        </label>
+    </div> -->
+</ng-container>
+
+<div style="text-align: center;">
+    <button type="button" class="btn btn-primary" (click)="getFilteredData()">Search</button>
+</div>
