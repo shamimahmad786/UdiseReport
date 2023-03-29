@@ -74,15 +74,21 @@ button:hover {
     color: #028E77;
     cursor: pointer;
     border: solid 1px #028E77;
-  
 }
-.common-bdr-btn i {color: #028E77;}
+
+.common-bdr-btn i {
+    color: #028E77;
+}
+
 .common-bdr-btn:hover {
     background: #028E77;
     color: #fff;
     border: solid 1px #028E77;
 }
-.common-bdr-btn:hover i {color: #fff;}
+
+.common-bdr-btn:hover i {
+    color: #fff;
+}
 
 .info-btn {
     background: #0DCAF0;
@@ -184,7 +190,6 @@ button:hover {
     border: none;
 }
 
-
 .tabular-wrap .ag-header {
     background: #E2E8F0;
     color: #2B3447;
@@ -192,25 +197,48 @@ button:hover {
     text-transform: uppercase;
     font-family: 'Poppins', sans-serif;
 }
-.tabular-wrap .ag-header-cell-text {font-weight: 500;}
-.tabular-wrap .ag-cell {font-family: 'Poppins', sans-serif;
-    font-weight: 400;}
+
+.tabular-wrap .ag-header-cell-text {
+    font-weight: 500;
+}
+
+.tabular-wrap .ag-cell {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
 
 @media (max-width: 1680px) {
-
-.tabular-wrap .ag-header-cell-text{margin-top: 2px;}
-.card-header {line-height: 36px; padding: 5px 12px;}
-.card-header h5{font-size: 18px;}
-.tabular-wrap .ag-header { font-size: 14px; height: auto !important; min-height: 40px !important;}
-.tabular-wrap .ag-header-row {height: 38px !important;}
-.tabular-wrap .ag-cell {font-size: 13px;}
+    .tabular-wrap .ag-header-cell-text {
+        margin-top: 2px;
+    }
+    .card-header {
+        line-height: 36px;
+        padding: 5px 12px;
+    }
+    .card-header h5 {
+        font-size: 18px;
+    }
+    .tabular-wrap .ag-header {
+        font-size: 14px;
+        height: auto !important;
+        min-height: 40px !important;
+    }
+    .tabular-wrap .ag-header-row {
+        height: 38px !important;
+    }
+    .tabular-wrap .ag-cell {
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 1400px) {
-    .tabular-wrap .ag-header { font-size: 13px; }
-    .tabular-wrap .ag-cell {font-size: 12px;}
+    .tabular-wrap .ag-header {
+        font-size: 13px;
     }
-    
+    .tabular-wrap .ag-cell {
+        font-size: 12px;
+    }
+}
 
 
 /***************Report Landing Page css*************/
@@ -580,7 +608,6 @@ button:hover {
 .footer {
     background: #1F1F1F;
     padding-top: 20px;
-
 }
 
 .copyright {
@@ -607,7 +634,10 @@ button:hover {
     max-width: 100%;
     margin-bottom: 20px;
 }
-.footer-top{clear: both;}
+
+.footer-top {
+    clear: both;
+}
 
 .footer-top h4 {
     color: #fff;
@@ -641,7 +671,6 @@ button:hover {
     color: #fff;
     font-size: 14px;
     line-height: 24px;
-
     font-family: 'Inter', sans-serif;
     background: url(assets/images/arrow-footer.svg) no-repeat 0 center;
     padding-left: 20px;
@@ -657,16 +686,26 @@ button:hover {
     color: #FFA630;
 }
 
-.footer-top ul{margin-top: -10px;}
+.footer-top ul {
+    margin-top: -10px;
+}
 
 @media only screen and (max-width: 1680px) {
-    .copyright p{font-size: 13px;}
-    .footer-top ul li a {font-size: 14px; }
-    .footer-top p{font-size: 13px;}
+    .copyright p {
+        font-size: 13px;
+    }
+    .footer-top ul li a {
+        font-size: 14px;
+    }
+    .footer-top p {
+        font-size: 13px;
+    }
 }
 
 @media only screen and (max-width: 767px) {
-    .footer{float: left;}
+    .footer {
+        float: left;
+    }
     .footer .col-6 {
         width: 100%;
     }
@@ -676,7 +715,9 @@ button:hover {
 }
 
 @media only screen and (max-width: 479px) {
-    .footer-top ul{margin-top: 0px;}
+    .footer-top ul {
+        margin-top: 0px;
+    }
     .report-table-section {
         margin-top: -190px;
     }

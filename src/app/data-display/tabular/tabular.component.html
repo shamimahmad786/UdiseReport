@@ -13,7 +13,8 @@
 
                     <div class="card-body  p-0">
                         <!-- <app-search-master [locationType]="locationType"></app-search-master> -->
-                        <ag-grid-angular style="width: 100%; height: 67.7vh;" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
+                        <ag-grid-angular style="width: 100%; height: 67.7vh;" [autoGroupColumnDef]="autoGroupColumnDef" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="" [rowData]="rowData"
+                            (gridReady)="onGridReady($event)"></ag-grid-angular>
                         <!-- <ag-grid-angular style="width: 100%; height: 52.5vh;"
                                      class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" 
                                      [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="true" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular> -->

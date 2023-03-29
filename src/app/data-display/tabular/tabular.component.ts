@@ -35,21 +35,17 @@ export class TabularComponent {
 
 
 
-  public columnDefs: ColDef[] = [
-    { field: 'country',filter:'agSetColumnFilter'},
-    { field: 'year'},
-    { field: 'date' },
-    { field: 'sport' },
-    { field: 'gold', aggFunc: 'sum' },
-    { field: 'silver', aggFunc: 'sum' },
-    { field: 'bronze', aggFunc: 'sum' },
-  ];
+  public columnDefs:  any[]  =[
+    {"headerName":"Pre Primary Enrolment","children":[{"field":"cpp_b","headerName":"Boys","enableValue":true},{"field":"cpp_g","headerName":"Girls","enableValue":true}]},
+
+    {"field":"state_name","enableValue":true}];
  
   public defaultColDef: ColDef = {
     // flex: 1,
     // minWidth: 150,
-    sortable: true,
-    filter: true,
+    // sortable: true,
+    // filter: true,
+    
     resizable: true,
   };
   public autoGroupColumnDef: ColDef = {
