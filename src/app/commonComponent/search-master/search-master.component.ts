@@ -20,10 +20,10 @@ export class SearchMasterComponent {
    isHideShowblckSelectDropDown:boolean=false;
    isHideShowParlSelectDropDown:boolean=false; 
    managementDisplayType:any;
-   reportYear:any;
+   reportYear:any=2021;
    radioTypeValue:any;
-   categorytype:any;
-   managementTypeValue:any;
+   categorytype:any=9;
+   managementTypeValue:any=9;
    reportStateId:any;
    reportDistrictId:any;
    reportBlockId:any;
@@ -36,12 +36,12 @@ export class SearchMasterComponent {
 ngOnInit(): void
     {
 
-      this.managementDisplayType=0;
-      this.reportYear="2021";
-      this.radioTypeValue=1;
-      this.categorytype=2;
-      this.managementTypeValue=0;
-      this.managementValue=1;
+      // this.managementDisplayType=0;
+      // this.reportYear="2021";
+      // this.radioTypeValue=1;
+      // this.categorytype;
+      // this.managementTypeValue=0;
+      // this.managementValue=1;
 
       // alert("filter--->"+JSON.stringify(sessionStorage.getItem("filterConfig")));
 
@@ -228,7 +228,6 @@ ngOnInit(): void
 
   managementType(event:any){
     this.managementDisplayType=event.target.value;
-    alert("called management Type");
   }
 
   getFilteredData(){
@@ -242,12 +241,10 @@ ngOnInit(): void
   }
 
   getStateYearWise(){
-    // alert("called");
     const data={"yearId":this.reportYear};
     this.masterDataService.getStateYearWise(data).subscribe((res) => {
-// alert("get state--->"+JSON.stringify(res));
 
-this.stateList=res.rowValue;
+    this.stateList=res.rowValue;
 
           })
   }

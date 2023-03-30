@@ -11,6 +11,8 @@ import { SelectButtonModule } from "primeng/selectbutton";
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from "primeng/button";
 import {TabularDataService} from "../service/tabular-data-service.component";
+import { MapComponent } from './map/map.component';
+import { MainloaderComponent } from '../commonComponent/mainloader/mainloader.component';
 // import { MatRadioChange } from '@angular/material/radio';
 
 
@@ -20,7 +22,9 @@ import {TabularDataService} from "../service/tabular-data-service.component";
     DataDisplayParentComponent,
     TabularComponent,
     ChartComponent,
-    SearchMasterComponent
+    SearchMasterComponent,
+    MapComponent,
+    MainloaderComponent
     // TabularDataService
   ],
   imports: [

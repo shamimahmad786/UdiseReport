@@ -1,16 +1,14 @@
+<div *ngIf="loader">
+    <app-mainloader></app-mainloader>
+</div>
 <div class="tabular-wrap">
     <div class="container-flued">
         <a href="" class="btn btn-border float-start "><i class="bi bi-arrow-left"></i> Back </a>
         <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" (click)="filterCollapse()" class="border side-menu float-end mb-1 rounded-3 p-1 text-decoration-none"><i
                 class="bi bi-list bi-lg py-2 p-1"></i> Report Filter</a>
         <div class="card p-0">
-
-
-
             <div class="container-fluid">
                 <div class="row flex-nowrap">
-
-
                     <div class="card-body  p-0">
                         <!-- <app-search-master [locationType]="locationType"></app-search-master> -->
                         <ag-grid-angular style="width: 100%; height: 67.7vh;" [autoGroupColumnDef]="autoGroupColumnDef" class="ag-theme-alpine" [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]="" [rowData]="rowData"

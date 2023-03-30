@@ -1,15 +1,15 @@
-<div class="tabular-wrap">
-    <div class="container-flued">
-        <div class="card p-0">
-            <div class="card-header">Chart<a href="" class="common-btn btn float-end "><i class="bi bi-arrow-left"></i>
-                    Back</a></div>
-            <div class="card-body">
-                <div id="container">
-                    <highcharts-chart id="container" [Highcharts]="Highcharts" [constructorType]="chartConstructor"
-                    [options]="chartOptions" style="width: 100%; height: 85%; display: block;">
-                </highcharts-chart>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/sunburst.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+  <div id="container"></div>
+  <p class="highcharts-description">
+    Sunburst charts are used to visualize hierarchical data in a
+    circular shape. The inner elements are parent nodes, with
+    child nodes distributed on the outer rings. Click on a parent
+    node to drill down and inspect the tree in more detail.
+  </p>
+</figure>

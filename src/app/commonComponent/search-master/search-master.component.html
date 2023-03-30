@@ -3,7 +3,7 @@
 
         <div class="mb-3">
             <label for="year" class="form-label">Year </label>
-            <select class="form-select form-select-sm" [(ngModel)]="reportYear" id="sel1" name="sellist1">
+            <select class="form-select form-select-sm" [(ngModel)]="reportYear">
                 
                 <option value="2021">2021-22</option>
                 <option value="2020">2020-21</option>
@@ -95,9 +95,9 @@
     <div class="col-md-12">
         <div class="mb-3">
             <label for="block" class="form-label">Category Type</label>
-            <select class="form-select form-select-sm" [(ngModel)]="categorytype" id="sel1" name="sellist1">
-                <option value="9">None</option>
-                <option value="0" selected>All</option>
+            <select class="form-select form-select-sm" [(ngModel)]="categorytype">
+                <option value="9" selected>None</option>
+                <option value="0">All</option>
                 <option value="1">General</option>
                 <option value="2">SC</option>
                 <option value="3">ST</option>
@@ -112,7 +112,7 @@
         <div class="mb-3">
             <label for="block" class="form-label">Management Type</label>
             <select class="form-select form-select-sm" id="sel1" [(ngModel)]="managementTypeValue" (change)="managementType($event)" name="sellist1">
-                <option value="9">None</option>
+                <option value="9" selected>None</option>
                 <option value="1">Broad</option>
                 <option value="2">Central</option>
             </select>
@@ -130,19 +130,6 @@
         <option value="3">Private Unaided (Recognized) </option>
         <option value="4">Other</option>
     </select>
-
-    <!-- <div class="form-check">
-        <input class="form-check-input" type="radio" name="broadRadios" id="exampleRadios1" value="1">
-        <label class="form-check-label" for="exampleRadios1">
-          Broad Type 1
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="broadRadios" id="exampleRadios3" value="2">
-        <label class="form-check-label" for="exampleRadios3">
-        Broad Type 4
-        </label>
-    </div> -->
 </ng-container>
 
 
@@ -170,18 +157,6 @@
         <option value="18">Madarsa unrecognized </option>
     </select>
 
-    <!-- <div class="form-check">
-        <input class="form-check-input" type="radio" name="centralRadios" id="exampleRadios1" value="1">
-        <label class="form-check-label" for="exampleRadios1">
-          Central Type 1
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="centralRadios" id="exampleRadios3" value="2">
-        <label class="form-check-label" for="exampleRadios3">
-        Central Type 17
-        </label>
-    </div> -->
 </ng-container>
 
 <div style="text-align: center;">
