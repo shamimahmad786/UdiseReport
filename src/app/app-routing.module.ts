@@ -10,6 +10,7 @@ const routes: Routes = [
     path: 'reportList',
     loadChildren: () => import('./report-list-component/report-list.module').then(m => m.ReportListModule)
   }
+  
   // {
   //   path: 'dataDisplay',
   //   loadChildren: () => import('./data-display/data-display.module').then(m => m.DataDisplayModule)

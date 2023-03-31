@@ -5,6 +5,7 @@ import { IOlympicData } from '../../data-display/interface';
 import 'ag-grid-enterprise';
 import { TabularDataService } from '../../service/tabular-data-service.component';
 import { SearchMasterComponent } from '../../commonComponent/search-master/search-master.component';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabular',
@@ -13,7 +14,7 @@ import { SearchMasterComponent } from '../../commonComponent/search-master/searc
 
 })
 export class TabularComponent {
-  constructor(private http: HttpClient, private tabularDataService: TabularDataService) { }
+  constructor(private http: HttpClient, private tabularDataService: TabularDataService,private routerService:Router) { }
 
   private gridColumnApi!: ColumnApi;
   public columnDefs: any[] = [];
@@ -25,13 +26,13 @@ export class TabularComponent {
   childArray: any[] = [];
   filterConfig: any;
   loader:boolean =false;
-
-
+  reportId:any;
   abc: any;
 
   ngOnInit() {
     sessionStorage.setItem("filterConfig", "A");
-    this.getTabularData("1001");
+    this.reportId = this.routerService.url.split('/')[3];
+    this.getTabularData(this.reportId);
 
   }
 

@@ -11,7 +11,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'list', pathMatch: 'full' },
     { path: 'list', component: ListDataComponent },
     {
-        path: 'displayData', pathMatch: 'prefix',
+        path: 'displayData/:reportId', pathMatch: 'prefix',
         loadChildren: () => import('../data-display/data-display.module').then(m => m.DataDisplayModule)
       }
 ]
