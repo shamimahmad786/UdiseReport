@@ -1,6 +1,9 @@
 
 import { Component } from '@angular/core';
-import * as Highcharts from "highcharts-angular";
+import * as Highcharts from "highcharts/highmaps";
+import HC_sunburst from 'highcharts/modules/sunburst';
+HC_sunburst(Highcharts);
+
 
 
 @Component({
@@ -1388,10 +1391,61 @@ export class ChartComponent {
     value: 1300
   }];
 
+highcharts1: typeof Highcharts = Highcharts;
 
+chartOptions1: Highcharts.Options = <any> {
+  chart: {
+    height: '100%'
+},
+title: {
+    text: 'World population 2017'
+},
+//colors:['transparent'].concat(Highcharts.getOptions().colors),
 
+series: [{
+  type: 'sunburst',
+  data: this.data,
+  name: 'Root',
+  allowDrillToNode: true,
+  cursor: 'pointer',
+  dataLabels: {
+    format: '{point.name}',
+    filter: {
+      property: 'innerArcLength',
+      operator: '>',
+      value: 16
+    },
+    rotationMode: 'circular'
+  },
+  levels: [{
+    level: 1,
+    levelIsConstant: false,
+    dataLabels: {
+      filter: {
+        property: 'outerArcLength',
+        operator: '>',
+        value: 64
+      }
+    }
+  }, {
+    level: 2,
+    colorByPoint: true
+  },
+  {
+    level: 3,
+    colorVariation: {
+      key: 'brightness',
+      to: -0.5
+    }
+  }, {
+    level: 4,
+    colorVariation: {
+      key: 'brightness',
+      to: 0.5
+    }
+  }]
 
-  
-
+}],
+};
 
 }
