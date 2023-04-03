@@ -178,9 +178,6 @@ ngOnInit(): void
 
 
   ngOnChanges(){
-    debugger
-
-    // alert(this.locationType);
     this.isHideShowStateSelectDropDown=false;
     this.isHideShowDistSelectDropDown=false;
     this.isHideShowblckSelectDropDown=false;
@@ -233,7 +230,7 @@ ngOnInit(): void
   getFilteredData(){
 
     const dependencyData={'stateId':this.reportStateId,'districtId':this.reportDistrictId,'blockId':this.reportBlockId,'parliamentId':this.reportParliamentId,'paramValue':'as'};
-    const data={"mapId":"1001","reportFor":this.locationType,"initYear":this.reportYear,"valueType":this.radioTypeValue,"cateoryType":this.categorytype,"managementType":this.managementTypeValue,"managementValue":this.managementValue,"dependency":dependencyData};
+    const data={"mapId":"1002","reportFor":this.locationType,"initYear":this.reportYear,"valueType":this.radioTypeValue,"cateoryType":this.categorytype,"managementType":this.managementTypeValue,"managementValue":this.managementValue,"dependency":dependencyData};
 
     this.reportJson.emit(data);
 

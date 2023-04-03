@@ -68,13 +68,18 @@ export class TabularComponent {
   getTabularData(mapId: any) {
     // this.loader =true;
     this.tabularDataService.getTabularData(mapId).subscribe((res) => {
-      console.log("res--->" + JSON.stringify(res));
+      debugger
+      console.log("res--->" + JSON.stringify(res.rowValue));
+      
       this.loader = false;
       this.rowData = res.rowValue;
       this.displaySet = res.displaySet;
       this.templateType = res.templateType;
       this.filterConfig = res.filterData;
-      this.generateHeader(res.columnName);
+      this.columnDefs =res.tableHader;
+      console.log(res.tableHader);
+      console.log("this.columnDefs--->"+this.columnDefs);
+    //  this.generateHeader(res.table);
     })
   }
 
