@@ -19,25 +19,15 @@ export class ChartComponent {
 reportId:any;
 public rowData!: any[];
 
-// data = [
-//   {name: "London", children: [
-//     {name: "Management"},
-//     {name: "Sales", children: [
-//       {name: "Analysts" ,value:"12132"},
-//       {name: "Executives",value:"12132"}
-//     ]},
-//     {name: "Accounting"}
-//   ]},
-//   {name: "New York", children: [
-//     {name: "Technical", children: [
-//       {name: "Team Leaders" ,value:"12132"},
-//       {name: "Architects" ,value:"12132"},
-//       {name: "Developers" ,value:"12132"},
-//       {name: "Testers"}
-//     ]},
-//     {name: "HR"}
-//   ]}
-// ];
+data = [
+  {name: "Enrolemnt", children: [
+    {name: "Govt"},
+    {name: "Govt Aided"},
+    {name: "Private"},
+    {name: "Other"},
+  ]},
+
+];
 datadisplay:any [] =[];
 //anychart:any;
 
@@ -54,365 +44,265 @@ datadisplay:any [] =[];
 // chart.container("container");
 // chart.draw();
   }
+  ngAfterViewInit(): void {
+   
+    const chart = anychart.sunburst(anychart.data.tree(this.data));
+    chart.container('container');
+    chart.draw();
+  }
   //data =[{"cpp_b":289413,"cpp_g":198059,"c1_b":1427042,"c1_g":1281475,"c2_b":1496210,"c2_g":1393944,"c3_b":1447114,"c3_g":1366890,"c4_b":1344803,"c4_g":1271566,"c5_b":1372409,"c5_g":1326830,"c6_b":1156496,"c6_g":1159743,"c7_b":1157926,"c7_g":1195998,"c8_b":1161245,"c8_g":1196608,"c9_b":895245,"c9_g":905683,"c10_b":860812,"c10_g":858231,"c11_b":479489,"c11_g":457822,"c12_b":479750,"c12_g":454613,"state_name":"Bihar"},{"cpp_b":289413,"cpp_g":198059,"c1_b":1427042,"c1_g":1281475,"c2_b":1496210,"c2_g":1393944,"c3_b":1447114,"c3_g":1366890,"c4_b":1344803,"c4_g":1271566,"c5_b":1372409,"c5_g":1326830,"c6_b":1156496,"c6_g":1159743,"c7_b":1157926,"c7_g":1195998,"c8_b":1161245,"c8_g":1196608,"c9_b":895245,"c9_g":905683,"c10_b":860812,"c10_g":858231,"c11_b":479489,"c11_g":457822,"c12_b":479750,"c12_g":454613,"state_name":null}]
 
 
-  data = [{
-    id: '0.0',
-    parent: '',
-    name: 'Class Wise'
-  }, {
-    id: '1.3',
-    parent: '0.0',
-    name: 'Asia'
-  }, {
-    id: '1.1',
-    parent: '0.0',
-    name: 'Africa'
-  }, {
-    id: '1.2',
-    parent: '0.0',
-    name: 'America'
-  }, {
-    id: '1.4',
-    parent: '0.0',
-    name: 'Europe'
-  }, {
-    id: '1.5',
-    parent: '0.0',
-    name: 'Oceanic'
-  },
+  // data = [{
+  //   id: '0.0',
+  //   parent: '',
+  //   name: 'Class Wise'
+  // }, {
+  //   id: '1.3',
+  //   parent: '0.0',
+  //   name: 'Asia'
+  // }, {
+  //   id: '1.1',
+  //   parent: '0.0',
+  //   name: 'Africa'
+  // },
 
   /* Africa */
-  {
-    id: '2.1',
-    parent: '1.1',
-    name: 'Eastern Africa'
-  },
+  // {
+  //   id: '2.1',
+  //   parent: '1.1',
+  //   name: 'Eastern Africa'
+  // },
 
-  {
-    id: '3.1',
-    parent: '2.1',
-    name: 'Ethiopia',
-    value: 104957438
-  }, {
-    id: '3.2',
-    parent: '2.1',
-    name: 'Tanzania',
-    value: 57310019
-  }, {
-    id: '3.3',
-    parent: '2.1',
-    name: 'Kenya',
-    value: 49699862
-  }, {
-    id: '3.4',
-    parent: '2.1',
-    name: 'Uganda',
-    value: 42862958
-  }, {
-    id: '3.5',
-    parent: '2.1',
-    name: 'Mozambique',
-    value: 29668834
-  }, {
-    id: '3.6',
-    parent: '2.1',
-    name: 'Madagascar',
-    value: 25570895
-  }, {
-    id: '3.7',
-    parent: '2.1',
-    name: 'Malawi',
-    value: 18622104
-  }, {
-    id: '3.8',
-    parent: '2.1',
-    name: 'Zambia',
-    value: 17094130
-  }, {
-    id: '3.9',
-    parent: '2.1',
-    name: 'Zimbabwe',
-    value: 16529904
-  }, {
-    id: '3.10',
-    parent: '2.1',
-    name: 'Somalia',
-    value: 14742523
-  }, {
-    id: '3.11',
-    parent: '2.1',
-    name: 'South Sudan',
-    value: 12575714
-  }, {
-    id: '3.12',
-    parent: '2.1',
-    name: 'Rwanda',
-    value: 12208407
-  }, {
-    id: '3.13',
-    parent: '2.1',
-    name: 'Burundi',
-    value: 10864245
-  }, {
-    id: '3.14',
-    parent: '2.1',
-    name: 'Eritrea',
-    value: 5068831
-  }, {
-    id: '3.15',
-    parent: '2.1',
-    name: 'Mauritius',
-    value: 1265138
-  }, {
-    id: '3.16',
-    parent: '2.1',
-    name: 'Djibouti',
-    value: 956985
-  }, {
-    id: '3.17',
-    parent: '2.1',
-    name: 'Réunion',
-    value: 876562
-  }, {
-    id: '3.18',
-    parent: '2.1',
-    name: 'Comoros',
-    value: 813912
-  }, {
-    id: '3.19',
-    parent: '2.1',
-    name: 'Mayotte',
-    value: 253045
-  }, {
-    id: '3.20',
-    parent: '2.1',
-    name: 'Seychelles',
-    value: 94737
-  },
+  // {
+  //   id: '3.1',
+  //   parent: '2.1',
+  //   name: 'Ethiopia',
+  //   value: 104957438
+  // }
+  
 
-  {
-    id: '2.5',
-    parent: '1.1',
-    name: 'Western Africa'
-  },
+  // {
+  //   id: '2.5',
+  //   parent: '1.1',
+  //   name: 'Western Africa'
+  // },
 
-  {
-    id: '3.42',
-    parent: '2.5',
-    name: 'Nigeria',
-    value: 190886311
-  }, {
-    id: '3.43',
-    parent: '2.5',
-    name: 'Ghana',
-    value: 28833629
-  }, {
-    id: '3.44',
-    parent: '2.5',
-    name: 'Côte Ivoire',
-    value: 24294750
-  }, {
-    id: '3.45',
-    parent: '2.5',
-    name: 'Niger',
-    value: 21477348
-  }, {
-    id: '3.46',
-    parent: '2.5',
-    name: 'Burkina Faso',
-    value: 19193382
-  }, {
-    id: '3.47',
-    parent: '2.5',
-    name: 'Mali',
-    value: 18541980
-  }, {
-    id: '3.48',
-    parent: '2.5',
-    name: 'Senegal',
-    value: 15850567
-  }, {
-    id: '3.49',
-    parent: '2.5',
-    name: 'Guinea',
-    value: 12717176
-  }, {
-    id: '3.50',
-    parent: '2.5',
-    name: 'Benin',
-    value: 11175692
-  }, {
-    id: '3.51',
-    parent: '2.5',
-    name: 'Togo',
-    value: 7797694
-  }, {
-    id: '3.52',
-    parent: '2.5',
-    name: 'Sierra Leone',
-    value: 7557212
-  }, {
-    id: '3.53',
-    parent: '2.5',
-    name: 'Liberia',
-    value: 4731906
-  }, {
-    id: '3.54',
-    parent: '2.5',
-    name: 'Mauritania',
-    value: 4420184
-  }, {
-    id: '3.55',
-    parent: '2.5',
-    name: 'The Gambia',
-    value: 2100568
-  }, {
-    id: '3.56',
-    parent: '2.5',
-    name: 'Guinea-Bissau',
-    value: 1861283
-  }, {
-    id: '3.57',
-    parent: '2.5',
-    name: 'Cabo Verde',
-    value: 546388
-  }, {
-    id: '3.58',
-    parent: '2.5',
-    name: 'Saint Helena, Ascension and Tristan da Cunha',
-    value: 4049
-  },
+  // {
+  //   id: '3.42',
+  //   parent: '2.5',
+  //   name: 'Nigeria',
+  //   value: 190886311
+  // }, {
+  //   id: '3.43',
+  //   parent: '2.5',
+  //   name: 'Ghana',
+  //   value: 28833629
+  // }, {
+  //   id: '3.44',
+  //   parent: '2.5',
+  //   name: 'Côte Ivoire',
+  //   value: 24294750
+  // }, {
+  //   id: '3.45',
+  //   parent: '2.5',
+  //   name: 'Niger',
+  //   value: 21477348
+  // }, {
+  //   id: '3.46',
+  //   parent: '2.5',
+  //   name: 'Burkina Faso',
+  //   value: 19193382
+  // }, {
+  //   id: '3.47',
+  //   parent: '2.5',
+  //   name: 'Mali',
+  //   value: 18541980
+  // }, {
+  //   id: '3.48',
+  //   parent: '2.5',
+  //   name: 'Senegal',
+  //   value: 15850567
+  // }, {
+  //   id: '3.49',
+  //   parent: '2.5',
+  //   name: 'Guinea',
+  //   value: 12717176
+  // }, {
+  //   id: '3.50',
+  //   parent: '2.5',
+  //   name: 'Benin',
+  //   value: 11175692
+  // }, {
+  //   id: '3.51',
+  //   parent: '2.5',
+  //   name: 'Togo',
+  //   value: 7797694
+  // }, {
+  //   id: '3.52',
+  //   parent: '2.5',
+  //   name: 'Sierra Leone',
+  //   value: 7557212
+  // }, {
+  //   id: '3.53',
+  //   parent: '2.5',
+  //   name: 'Liberia',
+  //   value: 4731906
+  // }, {
+  //   id: '3.54',
+  //   parent: '2.5',
+  //   name: 'Mauritania',
+  //   value: 4420184
+  // }, {
+  //   id: '3.55',
+  //   parent: '2.5',
+  //   name: 'The Gambia',
+  //   value: 2100568
+  // }, {
+  //   id: '3.56',
+  //   parent: '2.5',
+  //   name: 'Guinea-Bissau',
+  //   value: 1861283
+  // }, {
+  //   id: '3.57',
+  //   parent: '2.5',
+  //   name: 'Cabo Verde',
+  //   value: 546388
+  // }, {
+  //   id: '3.58',
+  //   parent: '2.5',
+  //   name: 'Saint Helena, Ascension and Tristan da Cunha',
+  //   value: 4049
+  // },
 
-  {
-    id: '2.3',
-    parent: '1.1',
-    name: 'North Africa'
-  },
+  // {
+  //   id: '2.3',
+  //   parent: '1.1',
+  //   name: 'North Africa'
+  // },
 
-  {
-    id: '3.30',
-    parent: '2.3',
-    name: 'Egypt',
-    value: 97553151
-  }, {
-    id: '3.31',
-    parent: '2.3',
-    name: 'Algeria',
-    value: 41318142
-  }, {
-    id: '3.32',
-    parent: '2.3',
-    name: 'Sudan',
-    value: 40533330
-  }, {
-    id: '3.33',
-    parent: '2.3',
-    name: 'Morocco',
-    value: 35739580
-  }, {
-    id: '3.34',
-    parent: '2.3',
-    name: 'Tunisia',
-    value: 11532127
-  }, {
-    id: '3.35',
-    parent: '2.3',
-    name: 'Libya',
-    value: 6374616
-  }, {
-    id: '3.36',
-    parent: '2.3',
-    name: 'Western Sahara',
-    value: 552628
-  },
+  // {
+  //   id: '3.30',
+  //   parent: '2.3',
+  //   name: 'Egypt',
+  //   value: 97553151
+  // }, {
+  //   id: '3.31',
+  //   parent: '2.3',
+  //   name: 'Algeria',
+  //   value: 41318142
+  // }, {
+  //   id: '3.32',
+  //   parent: '2.3',
+  //   name: 'Sudan',
+  //   value: 40533330
+  // }, {
+  //   id: '3.33',
+  //   parent: '2.3',
+  //   name: 'Morocco',
+  //   value: 35739580
+  // }, {
+  //   id: '3.34',
+  //   parent: '2.3',
+  //   name: 'Tunisia',
+  //   value: 11532127
+  // }, {
+  //   id: '3.35',
+  //   parent: '2.3',
+  //   name: 'Libya',
+  //   value: 6374616
+  // }, {
+  //   id: '3.36',
+  //   parent: '2.3',
+  //   name: 'Western Sahara',
+  //   value: 552628
+  // },
 
-  {
-    id: '2.2',
-    parent: '1.1',
-    name: 'Central Africa'
-  },
+  // {
+  //   id: '2.2',
+  //   parent: '1.1',
+  //   name: 'Central Africa'
+  // },
 
-  {
-    id: '3.21',
-    parent: '2.2',
-    name: 'Democratic Republic of the Congo',
-    value: 81339988
-  }, {
-    id: '3.22',
-    parent: '2.2',
-    name: 'Angola',
-    value: 29784193
-  }, {
-    id: '3.23',
-    parent: '2.2',
-    name: 'Cameroon',
-    value: 24053727
-  }, {
-    id: '3.24',
-    parent: '2.2',
-    name: 'Chad',
-    value: 14899994
-  }, {
-    id: '3.25',
-    parent: '2.2',
-    name: 'Congo',
-    value: 5260750
-  }, {
-    id: '3.26',
-    parent: '2.2',
-    name: 'Central African Republic',
-    value: 4659080
-  }, {
-    id: '3.27',
-    parent: '2.2',
-    name: 'Gabon',
-    value: 2025137
-  }, {
-    id: '3.28',
-    parent: '2.2',
-    name: 'Equatorial Guinea',
-    value: 1267689
-  }, {
-    id: '3.29',
-    parent: '2.2',
-    name: 'Sao Tome and Principe',
-    value: 204327
-  },
+  // {
+  //   id: '3.21',
+  //   parent: '2.2',
+  //   name: 'Democratic Republic of the Congo',
+  //   value: 81339988
+  // }, {
+  //   id: '3.22',
+  //   parent: '2.2',
+  //   name: 'Angola',
+  //   value: 29784193
+  // }, {
+  //   id: '3.23',
+  //   parent: '2.2',
+  //   name: 'Cameroon',
+  //   value: 24053727
+  // }, {
+  //   id: '3.24',
+  //   parent: '2.2',
+  //   name: 'Chad',
+  //   value: 14899994
+  // }, {
+  //   id: '3.25',
+  //   parent: '2.2',
+  //   name: 'Congo',
+  //   value: 5260750
+  // }, {
+  //   id: '3.26',
+  //   parent: '2.2',
+  //   name: 'Central African Republic',
+  //   value: 4659080
+  // }, {
+  //   id: '3.27',
+  //   parent: '2.2',
+  //   name: 'Gabon',
+  //   value: 2025137
+  // }, {
+  //   id: '3.28',
+  //   parent: '2.2',
+  //   name: 'Equatorial Guinea',
+  //   value: 1267689
+  // }, {
+  //   id: '3.29',
+  //   parent: '2.2',
+  //   name: 'Sao Tome and Principe',
+  //   value: 204327
+  // },
 
-  {
-    id: '2.4',
-    parent: '1.1',
-    name: 'South America'
-  },
+  // {
+  //   id: '2.4',
+  //   parent: '1.1',
+  //   name: 'South America'
+  // },
 
-  {
-    id: '3.37',
-    parent: '2.4',
-    name: 'South Africa',
-    value: 56717156
-  }, {
-    id: '3.38',
-    parent: '2.4',
-    name: 'Namibia',
-    value: 2533794
-  }, {
-    id: '3.39',
-    parent: '2.4',
-    name: 'Botswana',
-    value: 2291661
-  }, {
-    id: '3.40',
-    parent: '2.4',
-    name: 'Lesotho',
-    value: 2233339
-  }, {
-    id: '3.41',
-    parent: '2.4',
-    name: 'Swaziland',
-    value: 1367254
-  },
+  // {
+  //   id: '3.37',
+  //   parent: '2.4',
+  //   name: 'South Africa',
+  //   value: 56717156
+  // }, {
+  //   id: '3.38',
+  //   parent: '2.4',
+  //   name: 'Namibia',
+  //   value: 2533794
+  // }, {
+  //   id: '3.39',
+  //   parent: '2.4',
+  //   name: 'Botswana',
+  //   value: 2291661
+  // }, {
+  //   id: '3.40',
+  //   parent: '2.4',
+  //   name: 'Lesotho',
+  //   value: 2233339
+  // }, {
+  //   id: '3.41',
+  //   parent: '2.4',
+  //   name: 'Swaziland',
+  //   value: 1367254
+  // },
 
   // /** *********/
 
@@ -1433,7 +1323,46 @@ datadisplay:any [] =[];
   //   name: 'Tokelau',
   //   value: 1300
   // }];
-]
+//]
+// data = [
+//   {
+//     name: 'Fruit',
+//     value: 10,
+//     children: [
+//       {
+//         name: 'Apple',
+//         value: 5,
+//       },
+//       {
+//         name: 'Orange',
+//         value: 3,
+//       },
+//       {
+//         name: 'Banana',
+//         value: 2,
+//       },
+//     ],
+//   },
+//   {
+//     name: 'Vegetables',
+//     value: 8,
+//     children: [
+//       {
+//         name: 'Carrot',
+//         value: 3,
+//       },
+//       {
+//         name: 'Tomato',
+//         value: 3,
+//       },
+//       {
+//         name: 'Broccoli',
+//         value: 2,
+//       },
+//     ],
+//   },
+// ];
+
   
 highcharts1: typeof Highcharts = Highcharts;
 

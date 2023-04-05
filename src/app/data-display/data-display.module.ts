@@ -7,12 +7,11 @@ import { ChartComponent } from './chart/chart.component'
 import { AgGridModule } from 'ag-grid-angular';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { SearchMasterComponent } from '../commonComponent/search-master/search-master.component';
-import { SelectButtonModule } from "primeng/selectbutton";
 import { FormsModule } from '@angular/forms';
-import { ButtonModule } from "primeng/button";
-import {TabularDataService} from "../service/tabular-data-service.component";
 import { MapComponent } from './map/map.component';
 import { MainloaderComponent } from '../commonComponent/mainloader/mainloader.component';
+
+
 // import { MatRadioChange } from '@angular/material/radio';
 
 
@@ -24,18 +23,17 @@ import { MainloaderComponent } from '../commonComponent/mainloader/mainloader.co
     ChartComponent,
     SearchMasterComponent,
     MapComponent,
-    MainloaderComponent
+    MainloaderComponent,
+    
+    
     // TabularDataService
   ],
   imports: [
     CommonModule,
     DataDisplayRoutingModule,
     AgGridModule,
-    SelectButtonModule,
     HighchartsChartModule,
-    FormsModule,
-    ButtonModule,
-    
+    FormsModule
   ]
 })
 export class DataDisplayModule { }

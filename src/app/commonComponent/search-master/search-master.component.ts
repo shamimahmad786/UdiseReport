@@ -1,5 +1,4 @@
 import { Component, Input,Output,EventEmitter } from '@angular/core';
-import { PrimeNGConfig } from "primeng/api";
 import {MasterDataService} from '../../service/master-data-service.component';
 import { HttpClient } from '@angular/common/http';
 @Component({
