@@ -35,15 +35,22 @@ export class ChartComponent {
   //   {"parent":'2',"name":"Boys","id":'3.1',value:120},
   //   {"parent":'2',"name":"Girls","id":'4.1',value:120}]
 
-  data = [
-    {"parent":'',"name":"Enrolment","id":'0'},
-    {"parent":'0',"name":"Primary","id":'1'},
-    {"parent":'1',"name":"Govt","id":'2'},
-    {"parent":'1',"name":"Govt","id":'3'},
-    {"parent":'1',"name":"Govt","id":'4'},
-    {"parent":'1',"name":"Govt","id":'5'},
-    {"parent":'2',"name":"Boys","id":'2',"value":1202},
-    {"parent":'2',"name":"Girls","id":'3',"value":1202}]
+    data=[
+      {"parent":'',"name":"All","column_name":'',"id":'0',},
+      {"parent":'0',"name":"Primary","column_name":'',"id":'1001'},
+      {"parent":'1001',"name":"Govt","column_name":'x',"id":'101',value:70 ,color:'red',width:200},
+      {"parent":'1001',"name":"GovtAided","column_name":'y',"id":'102',value:50} ,
+      {"parent":'1001',"name":"tes","column_name":'z',"id":'101',value:90}]
+
+  // data = [
+  //   {"parent":'',"name":"Enrolment","id":'0'},
+  //   {"parent":'0',"name":"Primary","id":'1'},
+  //   {"parent":'1',"name":"Govt","id":'2'},
+  //   {"parent":'1',"name":"Govt","id":'3'},
+  //   {"parent":'1',"name":"Govt","id":'4'},
+  //   {"parent":'1',"name":"Govt","id":'5'},
+  //   {"parent":'2',"name":"Boys","id":'2',"value":1202},
+  //   {"parent":'2',"name":"Girls","id":'3',"value":1202}]
 
   ngOnInit() {
     this.reportId = this.routerService.url.split('/')[3];
@@ -56,7 +63,7 @@ export class ChartComponent {
   getTabularData(mapId: any) {
 
     this.tabularDataService.getReportData(mapId).subscribe((res) => {
-      console.log("Header is " + JSON.stringify(res.tableHader) + "============ Length is " + res.tableHader.length);
+      console.log("Header is " + JSON.stringify(res.tableHader1) + "============ Length is " );
       this.result = res.tableHader;
     })
   }
