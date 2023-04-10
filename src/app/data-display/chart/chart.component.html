@@ -1,25 +1,22 @@
 <div *ngIf="loader">
   <app-mainloader></app-mainloader>
 </div>
-<!-- <div class="tabular-wrap">
+<div class="tabular-wrap">
   <div class="container-flued">
-      <div class="card p-0">
-          <div class="card-header">Chart<a href="" class="common-btn btn float-end "><i class="bi bi-arrow-left"></i>
-                  Back</a></div>
-          <div class="card-body text-center"> -->
-            <!-- <ngx-charts-bubble-chart [results]="data"></ngx-charts-bubble-chart> -->
-            
-            <!-- <ngx-charts-area-chart [results]="data"></ngx-charts-area-chart> -->
-              <div id="container">
-                <highcharts-chart
-                [Highcharts]="highcharts1"
-                [options]="chartOptions1"
-              >
+    <div class="card p-0">
+      <div class="card-header">Chart<a href="" class="common-btn btn float-end "><i class="bi bi-arrow-left"></i>
+          Back</a></div>
+      <div class="card-body text-center">
+        <div class="row">
+          <div class="col-md-4">
+            <div class id="container">
+              <highcharts-chart [Highcharts]="highcharts1" [options]="chartOptions1">
               </highcharts-chart>
-              </div>
-       
-          <!-- </div>
-          
+            </div>
+          </div>
+        </div>
+        
       </div>
+    </div>
   </div>
-</div> -->
+</div>

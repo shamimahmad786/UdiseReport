@@ -57,16 +57,6 @@ highcharts1: typeof Highcharts = Highcharts;
     this.tabularDataService.getReportData(mapId).subscribe((res) => {
       this.loader=false;
       debugger
-      // this.data = [
-      //   {"id":"All","parent":"","name":"All","column_name":""},
-      //   {"id":"1001","parent":"All","name":"Primary","column_name":""},
-      //  {"id":"101","parent":"1001","name":"Govt","column_name":""},
-      //    {"id":"10001","name":"Boys","parent":"101","column_name":"primary_boys_govt","value":"68347596"},
-      //    {"id":"10002","name":"Girls","parent":"101","column_name":"primary_girls_govt","value":"68967096"},
-      //    {"id":"102","parent":"1001","name":"Govt Aided","column_name":""},
-      //    {"id":"10003","name":"Boys","parent":"102","column_name":"primary_boys_govt_aided","value":"53884"},
-      //    {"id":"10004","name":"Girls","parent":"102","column_name":"primary_girls_govt_aided","value":"5332894"},
-      //   ]
     this.data =res.data;
      for(let i =0 ; i<this.data.length;i++){
       if(this.data[i].value !="0"){
