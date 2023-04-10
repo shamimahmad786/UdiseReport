@@ -7,8 +7,6 @@ import { TabularDataService } from 'src/app/service/tabular-data-service.compone
 HC_sunburst(Highcharts);
 import 'anychart';
 
-
-
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
@@ -20,30 +18,14 @@ export class ChartComponent {
   public rowData!: any[];
   datadisplay: any[] = [];
   result: any [] =[];
-//   data = [
-//   {parent:'',name:"Enrolement",id:'0.0'},
-//   {parent:'0.0',name:"Primary",id:'1.1'},
-//   {parent:'1.1',name:"Govt",id:'1.2'},
-//   {parent:'1.2',name:"Boys",id:'2.1'},
-//   {parent:'1.2',name:"Girls",id:'2.1'}
-// ]
-//data = [{"parent":1,"name":"Primary","id":0},{"parent":1,"name":"Primary","id":1},{"parent":1,"name":"Primary","id":2}]
-  // data=[
-  //   {"parent":'',"name":"Enrolement","id":'0'},
-  //   {"parent":'0',"name":"Primary","id":'1'},
-  //   {"parent":'1',"name":"Govt","id":'2'},
-  //   {"parent":'2',"name":"Boys","id":'3.1',value:120},
-  //   {"parent":'2',"name":"Girls","id":'4.1',value:120}]
+  loader:boolean=false;
+  data :any [] =[];
+  updateddata:any [] =[];
 
-  data = [
-    {"parent":'',"name":"Enrolment","id":'0'},
-    {"parent":'0',"name":"Primary","id":'1'},
-    {"parent":'1',"name":"Govt","id":'2'},
-    {"parent":'1',"name":"Govt","id":'3'},
-    {"parent":'1',"name":"Govt","id":'4'},
-    {"parent":'1',"name":"Govt","id":'5'},
-    {"parent":'2',"name":"Boys","id":'2',"value":1202},
-    {"parent":'2',"name":"Girls","id":'3',"value":1202}]
+highcharts1: typeof Highcharts = Highcharts;
+
+  chartOptions1!: Highcharts.Options;
+
 
   ngOnInit() {
     this.reportId = this.routerService.url.split('/')[3];
@@ -54,30 +36,58 @@ export class ChartComponent {
   }
 
   getTabularData(mapId: any) {
-
+    this.loader=true;
     this.tabularDataService.getReportData(mapId).subscribe((res) => {
-      console.log("Header is " + JSON.stringify(res.tableHader) + "============ Length is " + res.tableHader.length);
-      this.result = res.tableHader;
+      this.loader=false;
+      debugger
+      // this.data = [
+      //   {"id":"All","parent":"","name":"All","column_name":""},
+      //   {"id":"1001","parent":"All","name":"Primary","column_name":""},
+      //  {"id":"101","parent":"1001","name":"Govt","column_name":""},
+      //    {"id":"10001","name":"Boys","parent":"101","column_name":"primary_boys_govt","value":"68347596"},
+      //    {"id":"10002","name":"Girls","parent":"101","column_name":"primary_girls_govt","value":"68967096"},
+      //    {"id":"102","parent":"1001","name":"Govt Aided","column_name":""},
+      //    {"id":"10003","name":"Boys","parent":"102","column_name":"primary_boys_govt_aided","value":"53884"},
+      //    {"id":"10004","name":"Girls","parent":"102","column_name":"primary_girls_govt_aided","value":"5332894"},
+      //   ]
+    this.data =res.data;
+     for(let i =0 ; i<this.data.length;i++){
+      if(this.data[i].value !="0"){
+        this.updateddata.push(this.data[i]);
+      }
+      if(this.data[i].value =="0" ||this.data[i].value ==0 ){
+       let obj={
+          "id":this.data[i].id,
+          "parent":this.data[i].parent,
+          "name":this.data[i].name,
+          "column_name":this.data[i].column_name
+        }
+        this.updateddata.push(obj)
+      }
+     }
+
+    this.chartOptions1 = {
+      chart: {
+        height: '100%'
+      },
+      title: {
+        text: 'World population 2017'
+      },
+      //colors:['transparent'].concat(Highcharts.getOptions().colors),
+    
+      series: [{
+        type: 'sunburst',
+        data: this.updateddata
+      }],
+    };
+      console.log("Test " + JSON.stringify(this.updateddata));
     })
   }
 
   ngAfterViewInit(): void{
 
   }
-  highcharts1: typeof Highcharts = Highcharts;
+  
 
-  chartOptions1: Highcharts.Options = <any>{
-    chart: {
-      height: '100%'
-    },
-    title: {
-      text: 'World population 2017'
-    },
-    //colors:['transparent'].concat(Highcharts.getOptions().colors),
-
-    series: [{
-      type: 'sunburst',
-      data: this.data
-    }],
-  };
+  
 }

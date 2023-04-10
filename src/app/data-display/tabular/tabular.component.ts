@@ -19,7 +19,7 @@ export class TabularComponent {
   private gridColumnApi!: ColumnApi;
   public columnDefs: any[] = [];
   public rowData!: any[];
-  locationType: any
+  locationType: any =0;
   agGridHeader: any[] = [];
   displaySet: any[] = [];
   templateType: any;
@@ -32,7 +32,9 @@ export class TabularComponent {
   ngOnInit() {
     sessionStorage.setItem("filterConfig", "A");
     this.reportId = this.routerService.url.split('/')[3];
-    this.getTabularData(this.reportId);
+    const dependencyData={'stateId':0,'districtId':0,'blockId':0,'parliamentId':0,'paramValue':'as'};
+    const data={"mapId":this.reportId,"reportFor":this.locationType,"initYear":"2022","valueType":1,"cateoryType":9,"managementType":9,"managementValue":0,"dependency":dependencyData};
+    this.getTabularData(data);
 
   }
 
@@ -67,6 +69,7 @@ export class TabularComponent {
 
   getTabularData(mapId: any) {
     // this.loader =true;
+    debugger;
     this.tabularDataService.getTabularData(mapId).subscribe((res) => {
       debugger
       console.log("res--->" + JSON.stringify(res.rowValue));

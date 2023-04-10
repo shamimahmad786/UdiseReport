@@ -1,6 +1,7 @@
 import { Component, Input,Output,EventEmitter } from '@angular/core';
 import {MasterDataService} from '../../service/master-data-service.component';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-search-master',
   templateUrl: './search-master.component.html',
@@ -29,11 +30,14 @@ export class SearchMasterComponent {
    reportParliamentId:any;
    managementValue:any;
    @Input() abcd: any;
+   reportId:any;
    @Output() reportJson = new EventEmitter<any>();
-   constructor(private http: HttpClient, private masterDataService:MasterDataService) { }
+   constructor(private http: HttpClient, private masterDataService:MasterDataService ,private routerService:Router) { }
       
 ngOnInit(): void
     {
+
+this.reportId = this.routerService.url.split('/')[3];
 
       // this.managementDisplayType=0;
       // this.reportYear="2021";
@@ -229,11 +233,8 @@ ngOnInit(): void
   getFilteredData(){
 
     const dependencyData={'stateId':this.reportStateId,'districtId':this.reportDistrictId,'blockId':this.reportBlockId,'parliamentId':this.reportParliamentId,'paramValue':'as'};
-    const data={"mapId":"1002","reportFor":this.locationType,"initYear":this.reportYear,"valueType":this.radioTypeValue,"cateoryType":this.categorytype,"managementType":this.managementTypeValue,"managementValue":this.managementValue,"dependency":dependencyData};
-
+    const data={"mapId":this.reportId,"reportFor":this.locationType,"initYear":this.reportYear,"valueType":this.radioTypeValue,"cateoryType":this.categorytype,"managementType":this.managementTypeValue,"managementValue":this.managementValue,"dependency":dependencyData};
     this.reportJson.emit(data);
-
-    alert("Get filtered Data");
   }
 
   getStateYearWise(){
@@ -262,13 +263,6 @@ ngOnInit(): void
   }
 
   managementValueType(event:any){
-this.managementValue=event.target.value;
-alert(this.managementValue);
+    this.managementValue=event.target.value;
   }
-
-
-
-
-
-
 }
