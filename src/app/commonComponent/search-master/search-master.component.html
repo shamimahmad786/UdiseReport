@@ -51,7 +51,7 @@
                 <label for="block" class="form-label">Block</label>
                 <select class="form-select form-select-sm" id="sel1" [(ngModel)]="reportBlockId">
                     <option value="" selected disabled>Select Block</option>
-                    <option value="0">All District</option>
+                    <option value="0">All Block</option>
                     <option *ngFor="let block of blockList" [value]="block.block_id">{{block.block_name}}</option>
                   </select>
             </div>
