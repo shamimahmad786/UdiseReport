@@ -211,10 +211,19 @@ div.ag-theme-alpine div.ag-row {
     font-size: 5px !important;
 }
 .tabular-wrap .ag-header-row {
-    height: 49px !important;
+    height: 32px !important;
     background: #f8f8f8 !important;
 }
 .ag-theme-alpine .ag-header-row{font-weight: 600 !important;}
+
+.tabular-wrap .ag-header {
+    font-size: 12px;
+    height: auto !important;
+   min-height:65px !important;
+}
+
+.tabular-wrap .ag-header-row.ag-header-row-column {top:32px !important}
+
 @media (max-width: 1680px) {
     .tabular-wrap .ag-header-cell-text {
         margin-top: 2px;
@@ -232,7 +241,7 @@ div.ag-theme-alpine div.ag-row {
       //  min-height: 40px !important;
     }
     .tabular-wrap .ag-header-row {
-        height: 49px !important;
+        height: 32px !important;
         background: #f8f8f8;
     }
     .tabular-wrap .ag-cell {
