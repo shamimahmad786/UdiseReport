@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MasterDataService } from '../../service/master-data-service.component';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-search-master',
   templateUrl: './search-master.component.html',
@@ -29,8 +31,12 @@ export class SearchMasterComponent {
   reportBlockId: any;
   reportParliamentId: any;
   managementValue: any;
+  stateName:any ="";
+  districtName:any="";
+  blockName:any ="";
   @Input() abcd: any;
   reportId: any;
+  selectedIndex:any
   @Output() reportJson = new EventEmitter<any>();
   constructor(private http: HttpClient, private masterDataService: MasterDataService, private routerService: Router) { }
 
@@ -93,32 +99,59 @@ export class SearchMasterComponent {
   getFilteredData() {
 
     const dependencyData = { 'stateId': this.reportStateId, 'districtId': this.reportDistrictId, 'blockId': this.reportBlockId, 'parliamentId': this.reportParliamentId, 'paramValue': 'as' };
-    const data = { "mapId": this.reportId, "reportFor": this.locationType, "initYear": this.reportYear, "valueType": this.radioTypeValue, "SocialCategoryType": this.socialCategoryType, "managementType": this.managementTypeValue, "managementValue": this.managementValue, "dependency": dependencyData };
+    const data = { "mapId": this.reportId, "reportFor": this.locationType, "initYear": this.reportYear, "valueType": this.radioTypeValue, "SocialCategoryType": this.socialCategoryType, "managementType": this.managementTypeValue, "managementValue": this.managementValue, "dependency": dependencyData ,"stateName":this.stateName,"districtName":this.districtName,"blockName":this.blockName};
     this.reportJson.emit(data);
   }
 
   getStateYearWise() {
     const data = { "yearId": this.reportYear };
     this.masterDataService.getStateYearWise(data).subscribe((res) => {
-
+debugger
       this.stateList = res.rowValue;
 
     })
   }
 
-  getDistrictYearWise() {
+  getDistrictYearWise(event:any) {
+    debugger
+    console.log(this.stateList)
+    let filterData = _.filter(
+      this.stateList,
+      (item) => {
+        return item.state_id == event.target.value;
+      }
+    );
+    this.stateName =filterData[0].state_name;
     const data = { "yearId": this.reportYear, "stateId": this.reportStateId };
     this.masterDataService.getDistrictYearWise(data).subscribe((res) => {
       this.districtList = res.rowValue;
     })
   }
 
-  getBlockYearWise() {
+  getBlockYearWise(event:any) {
     debugger
+    console.log("District Name " + event.target.value);
+    let filterData = _.filter(
+      this.districtList,
+      (item) => {
+        return item.district_id == event.target.value;
+      }
+    );
+    this.districtName = filterData[0].district_name;
     const data = { "yearId": this.reportYear, "stateId": this.reportStateId, "districtId": this.reportDistrictId };
     this.masterDataService.getBlockYearWise(data).subscribe((res) => {
       this.blockList = res.rowValue;
     })
+  }
+
+  getParliamentaryList(event:any){
+    let filterData = _.filter(
+      this.blockList,
+      (item) => {
+        return item.block_id == event.target.value;
+      }
+    );
+    this.blockName = filterData[0].block_name;
   }
 
   managementValueType(event: any) {

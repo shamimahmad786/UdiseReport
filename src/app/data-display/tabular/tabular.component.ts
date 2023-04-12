@@ -32,13 +32,16 @@ export class TabularComponent {
   socialCatId:any;
   managementId:any;
   managementTypeId:any;
+  stateName:any;
+  districtName:any;
+  blockName:any;
 
 
   ngOnInit() {
     sessionStorage.setItem("filterConfig", "A");
     this.reportId = this.routerService.url.split('/')[3];
     const dependencyData={'stateId':0,'districtId':0,'blockId':0,'parliamentId':0,'paramValue':'as'};
-    const data={"mapId":this.reportId,"reportFor":this.locationType,"initYear":"2022","valueType":1,"SocialCategoryType":9,"managementType":9,"managementValue":0,"dependency":dependencyData};
+    const data={"mapId":this.reportId,"reportFor":this.locationType,"initYear":"2022","valueType":1,"SocialCategoryType":9,"managementType":9,"managementValue":0,"dependency":dependencyData,"stateName":this.stateName};
     this.getTabularData(data);
 
   }
@@ -82,6 +85,9 @@ export class TabularComponent {
      this.socialCatId = JSON.parse(this.dependentData).SocialCategoryType;
      this.managementTypeId = JSON.parse(this.dependentData).managementType;
      this.managementId = JSON.parse(this.dependentData).managementValue;
+     this.stateName = JSON.parse(this.dependentData).stateName;
+     this.districtName = JSON.parse(this.dependentData).districtName;
+     this.blockName = JSON.parse(this.dependentData).blockName;
  
 
     this.tabularDataService.getTabularData(mapId).subscribe((res) => {

@@ -9,9 +9,13 @@
                     aria-label="breadcrumb">
                     <ng-container *ngIf="locationType != 0">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"> State Name</a></li>
-                            <li class="breadcrumb-item" aria-current="page">State Name</li>
-                            <li class="breadcrumb-item" aria-current="page">State Name</li>
+                            <li class="breadcrumb-item"><a href="#"> State Name : {{stateName}}</a></li>
+                            <ng-container *ngIf="districtName !=''">
+                            <li class="breadcrumb-item" aria-current="page">District Name : {{districtName}}</li>
+                        </ng-container>
+                        <ng-container *ngIf="blockName !=''">
+                            <li class="breadcrumb-item" aria-current="page">Block Name : {{blockName}}</li>
+                        </ng-container>
                         </ol>
                     </ng-container>
                 </nav>
