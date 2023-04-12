@@ -10,6 +10,7 @@ import { SearchMasterComponent } from '../commonComponent/search-master/search-m
 import { FormsModule } from '@angular/forms';
 import { MapComponent } from './map/map.component';
 import { MainloaderComponent } from '../commonComponent/mainloader/mainloader.component';
+import { BroadManagementName, CenterManagementName, SocialCategory, YesNoCase } from '../utility/myPipe';
 
 
 // import { MatRadioChange } from '@angular/material/radio';
@@ -24,6 +25,10 @@ import { MainloaderComponent } from '../commonComponent/mainloader/mainloader.co
     SearchMasterComponent,
     MapComponent,
     MainloaderComponent,
+    YesNoCase,
+    SocialCategory,
+    BroadManagementName,
+    CenterManagementName
     
     
     // TabularDataService

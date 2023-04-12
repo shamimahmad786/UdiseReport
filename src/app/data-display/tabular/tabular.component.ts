@@ -27,7 +27,12 @@ export class TabularComponent {
   filterConfig: any;
   loader:boolean =false;
   reportId:any;
+  dependentData:any;
   abc: any;
+  socialCatId:any;
+  managementId:any;
+  managementTypeId:any;
+
 
   ngOnInit() {
     sessionStorage.setItem("filterConfig", "A");
@@ -46,6 +51,7 @@ export class TabularComponent {
     filter: 'agGroupColumnFilter',
   };
 
+ 
 
   onGridReady(params: GridReadyEvent<any>) {
     // this.gridColumnApi = params.columnApi;
@@ -69,9 +75,17 @@ export class TabularComponent {
 
   getTabularData(mapId: any) {
      this.loader =false;
-    debugger;
+     debugger
+     this.dependentData = JSON.stringify(mapId);
+     
+     this.locationType = JSON.parse(this.dependentData).reportFor;
+     this.socialCatId = JSON.parse(this.dependentData).SocialCategoryType;
+     this.managementTypeId = JSON.parse(this.dependentData).managementType;
+     this.managementId = JSON.parse(this.dependentData).managementValue;
+ 
+
     this.tabularDataService.getTabularData(mapId).subscribe((res) => {
-      debugger
+
       console.log("res--->" + JSON.stringify(res.rowValue));
       
       this.loader = false;

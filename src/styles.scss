@@ -3,8 +3,8 @@
 
 /*====Reset css=========*/
 
-@import 'ag-grid-community/styles/ag-grid.css';
-@import 'ag-grid-community/styles/ag-theme-alpine.css';
+@import "~ag-grid-community/styles//ag-grid.css";
+@import "~ag-grid-community/styles//ag-theme-alpine.css";   
 body {
     font-size: 16px;
     font-family: 'Poppins', sans-serif;
@@ -207,6 +207,14 @@ button:hover {
     font-weight: 400;
 }
 
+div.ag-theme-alpine div.ag-row {
+    font-size: 5px !important;
+}
+.tabular-wrap .ag-header-row {
+    height: 49px !important;
+    background: #f8f8f8 !important;
+}
+.ag-theme-alpine .ag-header-row{font-weight: 600 !important;}
 @media (max-width: 1680px) {
     .tabular-wrap .ag-header-cell-text {
         margin-top: 2px;
@@ -219,15 +227,16 @@ button:hover {
         font-size: 18px;
     }
     .tabular-wrap .ag-header {
-        font-size: 14px;
+        font-size: 12px;
         height: auto !important;
       //  min-height: 40px !important;
     }
     .tabular-wrap .ag-header-row {
-        height: 38px !important;
+        height: 49px !important;
+        background: #f8f8f8;
     }
     .tabular-wrap .ag-cell {
-        font-size: 13px;
+        font-size: 11px;
     }
 }
 
@@ -236,7 +245,7 @@ button:hover {
         font-size: 13px;
     }
     .tabular-wrap .ag-cell {
-        font-size: 12px;
+        font-size: 11px;
     }
 }
 
