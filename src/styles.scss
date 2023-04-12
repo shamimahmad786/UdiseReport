@@ -223,6 +223,7 @@ div.ag-theme-alpine div.ag-row {
 }
 
 .tabular-wrap .ag-header-row.ag-header-row-column {top:32px !important}
+.tabular-wrap .ag-cell {text-align: right; padding-right: 0;}
 
 @media (max-width: 1680px) {
     .tabular-wrap .ag-header-cell-text {
