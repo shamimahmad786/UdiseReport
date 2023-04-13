@@ -22,5 +22,10 @@ export class MasterDataService {
     return this.http.post<any>(environment.BASE_URL + "/api/master/getBlockYearWise", data);
   }
 
+  fetchYearListReportWise(reportId:any){
+    return this.http.get<any>(environment.BASE_URL + "/api/master/yearListReportWise/"+reportId);
+  }
+
+
 
 }

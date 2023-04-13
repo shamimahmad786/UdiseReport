@@ -37,11 +37,20 @@ export class SearchMasterComponent {
   @Input() abcd: any;
   reportId: any;
   selectedIndex:any
+  yearList:any;
   @Output() reportJson = new EventEmitter<any>();
-  constructor(private http: HttpClient, private masterDataService: MasterDataService, private routerService: Router) { }
+
+  constructor(private http: HttpClient, private masterDataService: MasterDataService, 
+    private routerService: Router) { }
 
   ngOnInit(): void {
+    debugger
     this.reportId = this.routerService.url.split('/')[3];
+    this.masterDataService.fetchYearListReportWise(this.reportId).subscribe((result:any)=>{
+      debugger
+      this.yearList = result;
+      console.log("Year List is " + JSON.stringify(result))
+    })
   }
 
 
@@ -158,5 +167,9 @@ this.stateName="";
 
   managementValueType(event: any) {
     this.managementValue = event.target.value;
+  }
+
+  getYearId(event:any){
+    this.reportYear = event.target.value;
   }
 }

@@ -41,7 +41,7 @@ export class TabularComponent {
     sessionStorage.setItem("filterConfig", "A");
     this.reportId = this.routerService.url.split('/')[3];
     const dependencyData={'stateId':0,'districtId':0,'blockId':0,'parliamentId':0,'paramValue':'as'};
-    const data={"mapId":this.reportId,"reportFor":this.locationType,"initYear":"2022","valueType":1,"SocialCategoryType":9,"managementType":9,"managementValue":0,"dependency":dependencyData,"stateName":this.stateName};
+    const data={"mapId":this.reportId,"reportFor":this.locationType,"initYear":"2122","valueType":1,"SocialCategoryType":9,"managementType":9,"managementValue":0,"dependency":dependencyData,"stateName":this.stateName};
     this.getTabularData(data);
 
   }

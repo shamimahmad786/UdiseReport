@@ -8,6 +8,8 @@ import { TabularComponent } from './data-display/tabular/tabular.component';
 import { ListDataComponent } from './list-data/list-data.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { ChartFilterComponent } from './commonComponent/chart-filter/chart-filter.component';
+
 
 
 // import { HeaderComponentComponent } from './header-component/header-component.component';
@@ -17,7 +19,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 @NgModule({
   declarations: [
     AppComponent,
-    ListDataComponent,
+    ListDataComponent
     // HeaderComponentComponent,
     // FooterComponentComponent
     // ReportListComponentComponent

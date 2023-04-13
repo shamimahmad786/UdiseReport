@@ -3,15 +3,9 @@
 
         <div class="mb-3">
             <label for="year" class="form-label">Year </label>
-            <select class="form-select form-select-sm" [(ngModel)]="reportYear">
-                
-                <option value="2021">2021-22</option>
-                <option value="2020">2020-21</option>
-                <option value="2019">2019-20</option>
-                <option value="2018">2018-19</option>
-                <option value="2017">2017-18</option>
-                <option value="2016">2016-17</option>
-                <option value="2015">2015-16</option>
+            <select class="form-select form-select-sm" [(ngModel)]="reportYear" (change)="getYearId($event)">
+                <option value="0" selected disabled>Select Year</option>
+                <option *ngFor="let year of yearList" [value]=year.yearId selected>{{year.reportYear}}</option>
               </select>
         </div>
 
@@ -73,10 +67,10 @@
     </ng-container>
 
 </div>
-<span style="font-weight: 500;">Value Type</span>
+<!-- <span style="font-weight: 500;">Value Type</span> -->
 
 
-<div>
+<!-- <div>
 
     <label class="form-check-label" for="flexCheckDefault">
         Absolute:
@@ -89,7 +83,7 @@
 
     <hr>
 
-</div>
+</div> -->
 
 <ng-container>
     <div class="col-md-12">
