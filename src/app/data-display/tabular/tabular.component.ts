@@ -49,7 +49,12 @@ export class TabularComponent {
   public defaultColDef: ColDef = {
     sortable: true,
     resizable: true,
+    filter:false
   };
+  icons = {
+    menu: ' ',
+    filter: ' ' //optional, we have already disabled it above.
+}
   public autoGroupColumnDef: ColDef = {
     filter: 'agGroupColumnFilter',
   };
