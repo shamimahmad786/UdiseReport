@@ -113,8 +113,8 @@ debugger
   }
 
   getDistrictYearWise(event:any) {
-    debugger
-    console.log(this.stateList)
+debugger
+this.stateName="";
     let filterData = _.filter(
       this.stateList,
       (item) => {
@@ -130,6 +130,7 @@ debugger
 
   getBlockYearWise(event:any) {
     debugger
+    this.districtName="";
     console.log("District Name " + event.target.value);
     let filterData = _.filter(
       this.districtList,
@@ -145,6 +146,7 @@ debugger
   }
 
   getParliamentaryList(event:any){
+    this.blockName="";
     let filterData = _.filter(
       this.blockList,
       (item) => {

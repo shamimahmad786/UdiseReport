@@ -90,9 +90,12 @@ export class TabularComponent {
      this.socialCatId = JSON.parse(this.dependentData).SocialCategoryType;
      this.managementTypeId = JSON.parse(this.dependentData).managementType;
      this.managementId = JSON.parse(this.dependentData).managementValue;
-     this.stateName = JSON.parse(this.dependentData).stateName;
-     this.districtName = JSON.parse(this.dependentData).districtName;
-     this.blockName = JSON.parse(this.dependentData).blockName;
+    //  this.stateName = JSON.parse(this.dependentData).stateName;
+    //  this.districtName = JSON.parse(this.dependentData).districtName;
+    //  this.blockName = JSON.parse(this.dependentData).blockName;
+     this.stateName =JSON.parse(this.dependentData).stateName== ""?"All India":JSON.parse(this.dependentData).stateName;
+     this.districtName = JSON.parse(this.dependentData).districtName == ""?"All District":JSON.parse(this.dependentData).districtName;
+    this.blockName = JSON.parse(this.dependentData).blockName == ""?"All Block":JSON.parse(this.dependentData).blockName
  
 
     this.tabularDataService.getTabularData(mapId).subscribe((res) => {

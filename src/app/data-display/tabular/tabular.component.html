@@ -8,13 +8,32 @@
                 <nav style="--bs-breadcrumb-divider: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&quot;);"
                     aria-label="breadcrumb">
                     <ng-container *ngIf="locationType != 0">
+
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"> State Name : {{stateName}}</a></li>
-                            <ng-container *ngIf="districtName !=''">
-                            <li class="breadcrumb-item" aria-current="page">District Name : {{districtName}}</li>
-                        </ng-container>
-                        <ng-container *ngIf="blockName !=''">
-                            <li class="breadcrumb-item" aria-current="page">Block Name : {{blockName}}</li>
+                            <ng-container *ngIf="locationType == 1 || locationType == 2 || locationType == 3">
+                                <ng-container *ngIf="stateName == 'All India'">
+                                    <li class="breadcrumb-item"><a href="#"> {{stateName}}</a></li>
+                                </ng-container>
+                                <ng-container *ngIf="stateName != 'All India'">
+                                    <li class="breadcrumb-item"><a href="#"> State Name : {{stateName}}</a></li>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngIf="locationType == 2 || locationType == 3">
+                                <ng-container *ngIf="districtName =='All District'">
+                                    <li class="breadcrumb-item" aria-current="page"> {{districtName}}</li>
+                                </ng-container>
+                                <ng-container *ngIf="districtName !='All District'">
+                                    <li class="breadcrumb-item" aria-current="page">District Name : {{districtName}}
+                                    </li>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngIf="locationType == 3">
+                            <ng-container *ngIf="blockName =='All Block'">
+                                <li class="breadcrumb-item" aria-current="page">{{blockName}}</li>
+                            </ng-container>
+                            <ng-container *ngIf="blockName !='All Block'">
+                                <li class="breadcrumb-item" aria-current="page">Block Name : {{blockName}}</li>
+                            </ng-container>
                         </ng-container>
                         </ol>
                     </ng-container>
@@ -30,11 +49,13 @@
                             </li>
                         </ng-container>
                         <ng-container *ngIf="managementTypeId == 1">
-                            <li class="breadcrumb-item" aria-current="page">Management Name : {{managementId | broadmanagementName}}</li>
+                            <li class="breadcrumb-item" aria-current="page">Management Name : {{managementId |
+                                broadmanagementName}}</li>
                         </ng-container>
 
                         <ng-container *ngIf="managementTypeId == 2">
-                            <li class="breadcrumb-item" aria-current="page">Management Name : {{managementId | centerManagementName}}</li>
+                            <li class="breadcrumb-item" aria-current="page">Management Name : {{managementId |
+                                centerManagementName}}</li>
                         </ng-container>
                     </ol>
 
@@ -55,7 +76,6 @@
                             [autoGroupColumnDef]="autoGroupColumnDef" [columnDefs]="columnDefs"
                             [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [sideBar]=""
                             [rowData]="rowData" (gridReady)="onGridReady($event)" [icons]="icons"></ag-grid-angular>
-
                     </div>
                 </div>
                 <div id="sidebar" class="collapse collapse-horizontal border-end">
