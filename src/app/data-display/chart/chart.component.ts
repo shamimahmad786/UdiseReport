@@ -102,7 +102,7 @@ showFirstGraph()
       height: '100%',
     },
     title: {
-      text: 'World population 2017'
+      text: ''
     },
     
     credits: {
