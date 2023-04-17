@@ -1,62 +1,78 @@
-
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { ColDef, ColumnApi, GridReadyEvent, SideBarDef } from 'ag-grid-community';
+import { IOlympicData } from '../../data-display/interface';
+import 'ag-grid-enterprise';
+import { TabularDataService } from '../../service/tabular-data-service.component';
+import { SearchMasterComponent } from '../../commonComponent/search-master/search-master.component';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import * as Highcharts from "highcharts/highmaps";
 import HC_sunburst from 'highcharts/modules/sunburst';
-import { TabularDataService } from 'src/app/service/tabular-data-service.component';
+import * as HighchartsExporting from "highcharts/modules/exporting";
+import * as HighchartsExportData from "highcharts/modules/export-data";
 HC_sunburst(Highcharts);
-import 'anychart';
-
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss']
 })
-
 export class ChartComponent {
+  constructor(private tabularDataService: TabularDataService,
+    private routerService: Router) {
+  }
+  locationType: any =0;
+  filterConfig: any;
+  loader:boolean =false;
+  abc: any;
   reportId: any;
   public rowData!: any[];
   datadisplay: any[] = [];
   result: any [] =[];
-  loader:boolean=false;
   data :any [] =[];
   updateddata:any [] =[];
-
-highcharts1: typeof Highcharts = Highcharts;
-
+  scondgraphFinalData:any [] =[];
+  highcharts1: typeof Highcharts = Highcharts;
   chartOptions1!: Highcharts.Options;
-
-    // data=[
-    //   {"parent":'',"name":"All","column_name":'',"id":'0',},
-    //   {"parent":'0',"name":"Primary","column_name":'',"id":'1001'},
-    //   {"parent":'1001',"name":"Govt","column_name":'x',"id":'101',value:70 ,color:'red',width:200},
-    //   {"parent":'1001',"name":"GovtAided","column_name":'y',"id":'102',value:50} ,
-    //   {"parent":'1001',"name":"tes","column_name":'z',"id":'101',value:90}]
-
-  // data = [
-  //   {"parent":'',"name":"Enrolment","id":'0'},
-  //   {"parent":'0',"name":"Primary","id":'1'},
-  //   {"parent":'1',"name":"Govt","id":'2'},
-  //   {"parent":'1',"name":"Govt","id":'3'},
-  //   {"parent":'1',"name":"Govt","id":'4'},
-  //   {"parent":'1',"name":"Govt","id":'5'},
-  //   {"parent":'2',"name":"Boys","id":'2',"value":1202},
-  //   {"parent":'2',"name":"Girls","id":'3',"value":1202}]
-
-
+  chartOptions2!: Highcharts.Options;
+  graphAllDatasum: any;
+  pervalue: any;
+  public defaultColDef: ColDef = {
+    sortable: true,
+    resizable: true,
+    filter:false
+  };
+  public autoGroupColumnDef: ColDef = {
+    filter: 'agGroupColumnFilter',
+  };
   ngOnInit() {
     this.reportId = this.routerService.url.split('/')[3];
     this.getTabularData(this.reportId);
   }
-  constructor(private tabularDataService: TabularDataService,
-    private routerService: Router) {
+
+  icons = {
+    menu: ' ',
+    filter: ' ' //optional, we have already disabled it above.
+}
+ 
+
+  getLocationType(event: any) {
+    this.locationType = event.target.value;
   }
 
+
+  filterCollapse() {
+    // alert("called filter collapse");
+    this.abc = "{'shamim':'Y'}" + Math.random();
+    sessionStorage.setItem("filterConfig", this.filterConfig);
+  }
   getTabularData(mapId: any) {
     this.loader=true;
     this.tabularDataService.getReportData(mapId).subscribe((res) => {
       this.loader=false;
+    
+      console.log(res)
       debugger
+      
     this.data =res.data;
      for(let i =0 ; i<this.data.length;i++){
       if(this.data[i].value !="0"){
@@ -69,32 +85,100 @@ highcharts1: typeof Highcharts = Highcharts;
           "name":this.data[i].name,
           "column_name":this.data[i].column_name
         }
-        this.updateddata.push(obj)
-      }
+        this.updateddata.push(obj)      
+      }    
      }
+ 
 
-    this.chartOptions1 = {
-      chart: {
-        height: '100%'
-      },
-      title: {
-        text: 'World population 2017'
-      },
-      //colors:['transparent'].concat(Highcharts.getOptions().colors),
-    
-      series: [{
-        type: 'sunburst',
-        data: this.updateddata
-      }],
-    };
-      console.log("Test " + JSON.stringify(this.updateddata));
+     this.showFirstGraph();
     })
   }
-
-  ngAfterViewInit(): void{
-
-  }
-  
-
-  
+    ////////  show  first  graph showing all  data related to  student vs all //////////////////
+showFirstGraph()
+{
+  this.chartOptions1 = {
+   
+    chart: {
+      height: '100%',
+    },
+    title: {
+      text: 'World population 2017'
+    },
+    
+    credits: {
+      enabled: false
+    },
+     colors: ['#4572A7', '#AA4643', '#89A54E', '#80699B', '#3D96AE',
+     '#DB843D', '#92A8CD', '#A47D7C', '#B5CA92'],
+    series: [{
+      type: 'sunburst',
+      colorByPoint: true,
+      data: this.updateddata,
+      
+    }],
+  };
+}
+ngAfterViewInit(): void{
+}
+  ///////// graph show on click  of first  graph///////////////////////////
+  showSecandGraph(event:any)
+  {
+    console.log(this.updateddata)
+    this.graphAllDatasum = 0;
+    for(let i =0 ; i<this.updateddata.length;i++){
+     
+      if(this.updateddata[i].column_name!='' && this.updateddata[i].parent!="All" )
+      {
+        console.log(this.updateddata[i].value)
+        if(this.updateddata[i].value!=undefined)
+        {
+          this.graphAllDatasum += this.updateddata[i].value;  
+        }  
+      }
+     }
+    
+    this.pervalue= ((100 * event.point.value) / this.graphAllDatasum).toFixed(2);
+    this.scondgraphFinalData=[];
+    var finalObj1 = Object.assign({'All':this.graphAllDatasum})
+    this.scondgraphFinalData.push(finalObj1)
+    this.chartOptions2 = {
+      chart : {
+      //  plotBorderWidth: null,
+       // plotShadow: true
+     },
+     title : {
+        text: 'Browser market <b>'+event.point.name +': '+ this.pervalue+'%'  
+     },
+     tooltip : {
+       pointFormat:' </b>: {point.y}',
+     },
+     credits: {
+      enabled: false
+    },
+    
+     plotOptions : {
+        pie: {
+           allowPointSelect: true,
+           cursor: 'pointer',
+           dataLabels: {
+              enabled: true,
+              format: '<b>{point.name} </b>: {point.y}<br>',
+              style: {
+                 color:'#4572A7' 
+              }
+           },
+           showInLegend: true
+        }
+     },
+     series : [{
+        type: 'pie',
+        name: 'Browser share '+this.pervalue,
+       
+        data:[
+          ["All", this.graphAllDatasum-event.point.value],
+          [event.point.name, event.point.value],
+       ]
+     }]
+    };
+  } 
 }
