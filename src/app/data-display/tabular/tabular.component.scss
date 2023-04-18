@@ -20,8 +20,8 @@
     padding: 5px 10px 5px 5px !important;
     font-size: 15px;
     // background: #4f67cd;
-    color: #000;
-    border: solid 1px #111 !important;
+    color: #fff;
+    border: solid 1px #fff !important;
     border-radius: 4px !important;
     height: 32px;
     line-height: 20px;
@@ -107,4 +107,37 @@ label {
 
 ::ng-deep .ag-row:nth-child(odd) {
     background-color: #ffff !important;
+}
+
+.card-header {
+    background-color: #1b9493;
+    font-weight: 600;
+    color: #424242;
+    text-transform: normal;
+    line-height: 38px;
+    padding:5px 10px;
+    margin-bottom: -2px;
+}
+.card-header h6 {font-weight: 600; color: #fff; margin: 0;}
+.back-btn {position: absolute; top:106px; color: #fff;; right: 15px;}
+
+@media (max-width: 767px) {
+
+    .back-btn {position: absolute; top:104px; right: 0;} 
+}
+
+@media (max-width:640px) {
+
+    .back-btn {position: absolute; top:95px} 
+}
+
+
+@media (max-width: 480px) {
+
+    .back-btn {position: absolute; top:90px} 
+}
+
+@media (max-width: 400px) {
+
+    .back-btn {position: absolute; top:82px} 
 }
