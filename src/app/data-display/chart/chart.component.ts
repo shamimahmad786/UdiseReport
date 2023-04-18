@@ -17,6 +17,7 @@ HC_sunburst(Highcharts);
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent {
+  splitNameData: any;
   constructor(private tabularDataService: TabularDataService,
     private routerService: Router) {
   }
@@ -102,7 +103,7 @@ showFirstGraph()
       height: '100%',
     },
     title: {
-      text: ''
+      text: 'School Category And School Management Wise Enrolment'
     },
     
     credits: {
@@ -123,20 +124,36 @@ ngAfterViewInit(): void{
   ///////// graph show on click  of first  graph///////////////////////////
   showSecandGraph(event:any)
   {
+    console.log(event)
     console.log(this.updateddata)
     this.graphAllDatasum = 0;
     for(let i =0 ; i<this.updateddata.length;i++){
      
       if(this.updateddata[i].column_name!='' && this.updateddata[i].parent!="All" )
       {
-        console.log(this.updateddata[i].value)
+       // console.log(this.updateddata[i].value)
         if(this.updateddata[i].value!=undefined)
         {
           this.graphAllDatasum += this.updateddata[i].value;  
         }  
       }
      }
-    
+     this.splitNameData='';
+     if((event.point.name=="Girls") || (event.point.name=="Boys") )
+     {
+       //var splitData =event.point.column_name.split("_")
+      this.splitNameData=event.point.column_name.replaceAll("_", " ")
+      // console.log(splitNameData)
+     }
+     else{
+      console.log(event.point.options.parent)
+      for(let i =0 ; i< this.updateddata.length;i++){
+        if(this.data[i].id ==event.point.options.parent){
+          this.splitNameData=this.data[i].name+" "+event.point.name;
+        }
+         
+       }
+     }
     this.pervalue= ((100 * event.point.value) / this.graphAllDatasum).toFixed(2);
     this.scondgraphFinalData=[];
     var finalObj1 = Object.assign({'All':this.graphAllDatasum})
@@ -147,7 +164,7 @@ ngAfterViewInit(): void{
        // plotShadow: true
      },
      title : {
-        text: 'Browser market <b>'+event.point.name +': '+ this.pervalue+'%'  
+        text: '<b>'+event.point.name +': '+ this.pervalue+'%'  
      },
      tooltip : {
        pointFormat:' </b>: {point.y}',
@@ -176,7 +193,7 @@ ngAfterViewInit(): void{
        
         data:[
           ["All", this.graphAllDatasum-event.point.value],
-          [event.point.name, event.point.value],
+          [this.splitNameData, event.point.value],
        ]
      }]
     };

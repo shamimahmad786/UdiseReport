@@ -10,7 +10,7 @@ import { SearchMasterComponent } from '../commonComponent/search-master/search-m
 import { FormsModule } from '@angular/forms';
 import { MapComponent } from './map/map.component';
 import { MainloaderComponent } from '../commonComponent/mainloader/mainloader.component';
-import { BroadManagementName, CenterManagementName, SocialCategory, YesNoCase } from '../utility/myPipe';
+import { BroadManagementName, CenterManagementName, ReportName, SocialCategory, YesNoCase } from '../utility/myPipe';
 import { ChartFilterComponent } from '../commonComponent/chart-filter/chart-filter.component';
 
 
@@ -28,6 +28,7 @@ import { ChartFilterComponent } from '../commonComponent/chart-filter/chart-filt
     MainloaderComponent,
     YesNoCase,
     SocialCategory,
+    ReportName,
     BroadManagementName,
     CenterManagementName,
     ChartFilterComponent

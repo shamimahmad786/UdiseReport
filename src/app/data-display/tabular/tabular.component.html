@@ -3,12 +3,14 @@
 </div>
 <div class="tabular-wrap">
     <div class="container-flued">
-        <div class="d-flex justify-content-between border-bottom">
-            <div>
-                <nav style="--bs-breadcrumb-divider: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&quot;);"
-                    aria-label="breadcrumb">
-                    <ng-container *ngIf="locationType != 0">
-
+        <!-- <div class=" border-bottom mb-2">
+           
+        </div> -->
+        <ng-container *ngIf="locationType != 0">
+            <div class="d-flex justify-content-between border-bottom">
+                <div>
+                    <nav style="--bs-breadcrumb-divider: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&quot;);"
+                        aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <ng-container *ngIf="locationType == 1 || locationType == 2 || locationType == 3">
                                 <ng-container *ngIf="stateName == 'All India'">
@@ -28,45 +30,52 @@
                                 </ng-container>
                             </ng-container>
                             <ng-container *ngIf="locationType == 3">
-                            <ng-container *ngIf="blockName =='All Block'">
-                                <li class="breadcrumb-item" aria-current="page">{{blockName}}</li>
+                                <ng-container *ngIf="blockName =='All Block'">
+                                    <li class="breadcrumb-item" aria-current="page">{{blockName}}</li>
+                                </ng-container>
+                                <ng-container *ngIf="blockName !='All Block'">
+                                    <li class="breadcrumb-item" aria-current="page">Block Name : {{blockName}}</li>
+                                </ng-container>
                             </ng-container>
-                            <ng-container *ngIf="blockName !='All Block'">
-                                <li class="breadcrumb-item" aria-current="page">Block Name : {{blockName}}</li>
-                            </ng-container>
-                        </ng-container>
                         </ol>
-                    </ng-container>
-                </nav>
+                    </nav>
+                </div>
+                <div>
+                    <nav style="--bs-breadcrumb-divider: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&quot;);"
+                        aria-label="breadcrumb">
+
+                        <ol class="breadcrumb">
+                            <ng-container *ngIf="socialCatId != 9">
+                                <li class="breadcrumb-item"><a href="#"> Category Name :{{socialCatId | socialCatgory
+                                        }}</a>
+                                </li>
+                            </ng-container>
+                            <ng-container *ngIf="managementTypeId == 1">
+                                <li class="breadcrumb-item" aria-current="page">Management Name : {{managementId |
+                                    broadmanagementName}}</li>
+                            </ng-container>
+
+                            <ng-container *ngIf="managementTypeId == 2">
+                                <li class="breadcrumb-item" aria-current="page">Management Name : {{managementId |
+                                    centerManagementName}}</li>
+                            </ng-container>
+                        </ol>
+
+                    </nav>
+                </div>
+            </div>
+        </ng-container>
+        <div class="mt-2 d-flex justify-content-between">
+            <div>
+                <h6 class="mb-0 pb-2">{{reportId | reportName}}</h6>
             </div>
             <div>
-                <nav style="--bs-breadcrumb-divider: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&quot;);"
-                    aria-label="breadcrumb">
-
-                    <ol class="breadcrumb">
-                        <ng-container *ngIf="socialCatId != 9">
-                            <li class="breadcrumb-item"><a href="#"> Category Name :{{socialCatId | socialCatgory }}</a>
-                            </li>
-                        </ng-container>
-                        <ng-container *ngIf="managementTypeId == 1">
-                            <li class="breadcrumb-item" aria-current="page">Management Name : {{managementId |
-                                broadmanagementName}}</li>
-                        </ng-container>
-
-                        <ng-container *ngIf="managementTypeId == 2">
-                            <li class="breadcrumb-item" aria-current="page">Management Name : {{managementId |
-                                centerManagementName}}</li>
-                        </ng-container>
-                    </ol>
-
-                </nav>
+                <a href="" class="btn btn-border float-start "><i class="bi bi-arrow-left"></i> Back </a>
+                <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" (click)="filterCollapse()"
+                    class="border side-menu float-end mb-1 rounded-3 p-1 text-decoration-none"><i
+                        class="bi bi-list bi-lg py-2 p-1"></i> Report Filter</a>
             </div>
-        </div>
-        <div class="mt-2">
-            <a href="" class="btn btn-border float-start "><i class="bi bi-arrow-left"></i> Back </a>
-            <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" (click)="filterCollapse()"
-                class="border side-menu float-end mb-1 rounded-3 p-1 text-decoration-none"><i
-                    class="bi bi-list bi-lg py-2 p-1"></i> Report Filter</a>
+           
         </div>
         <div class="card p-0">
             <div class="container-fluid">
