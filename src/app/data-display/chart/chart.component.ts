@@ -67,6 +67,7 @@ export class ChartComponent {
     sessionStorage.setItem("filterConfig", this.filterConfig);
   }
   getTabularData(mapId: any) {
+    debugger
     this.loader=true;
     this.tabularDataService.getReportData(mapId).subscribe((res) => {
       this.loader=false;
