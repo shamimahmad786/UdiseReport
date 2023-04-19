@@ -18,8 +18,8 @@ export class TabularDataService {
   }
 
   getReportData(data:any){
-    let data1={"mapId":"1002","reportFor":"1","initYear":2021,"cateoryType":9,"managementType":9,"dependency":{"stateId":"110","paramValue":"as"}};
-    return this.http.post<any>(environment.BASE_URL + "/api/getSunBurstData", data1);
+    //let data1={"mapId":"1002","reportFor":"1","initYear":2021,"cateoryType":9,"managementType":9,"dependency":{"stateId":"110","paramValue":"as"}};
+    return this.http.post<any>(environment.BASE_URL + "/api/getSunBurstData", data);
   }
 
 

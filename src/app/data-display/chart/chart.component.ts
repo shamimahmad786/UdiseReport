@@ -10,6 +10,8 @@ import * as Highcharts from "highcharts/highmaps";
 import HC_sunburst from 'highcharts/modules/sunburst';
 import * as HighchartsExporting from "highcharts/modules/exporting";
 import * as HighchartsExportData from "highcharts/modules/export-data";
+import { MasterDataService } from 'src/app/service/master-data-service.component';
+import _ from 'lodash';
 HC_sunburst(Highcharts);
 @Component({
   selector: 'app-chart',
@@ -19,7 +21,7 @@ HC_sunburst(Highcharts);
 export class ChartComponent {
   splitNameData: any;
   constructor(private tabularDataService: TabularDataService,
-    private routerService: Router) {
+    private routerService: Router ,private masterDataService :MasterDataService) {
   }
   locationType: any =0;
   filterConfig: any;
@@ -37,6 +39,25 @@ export class ChartComponent {
   chartOptions2!: Highcharts.Options;
   graphAllDatasum: any;
   pervalue: any;
+  stateList :any []=[];
+  reportYear:any;
+  yearList:any [] =[];
+  reportStateId:any;
+  reportDistrictId:any;
+  reportBlockId:any;
+  stateName:any;
+  districtName:any
+  blockName:any;
+  districtList:any [] =[];
+  blockList:any [] = [];
+
+  isHideShowStateSelectDropDown: boolean = false;
+  isHideShowDistSelectDropDown: boolean = false;
+  isHideShowblckSelectDropDown: boolean = false;
+  
+  
+
+
   public defaultColDef: ColDef = {
     sortable: true,
     resizable: true,
@@ -47,6 +68,11 @@ export class ChartComponent {
   };
   ngOnInit() {
     this.reportId = this.routerService.url.split('/')[3];
+    this.masterDataService.fetchYearListReportWise(this.reportId).subscribe((result:any)=>{
+      debugger
+      this.yearList = result;
+      console.log("Year List is " + JSON.stringify(result))
+    })
     this.getTabularData(this.reportId);
   }
 
@@ -58,6 +84,26 @@ export class ChartComponent {
 
   getLocationType(event: any) {
     this.locationType = event.target.value;
+    switch (this.locationType) {
+      case "0":
+        this.isHideShowStateSelectDropDown = false;
+        this.isHideShowDistSelectDropDown = false;
+        this.isHideShowblckSelectDropDown = false;
+        break;
+      case "1":
+        this.isHideShowStateSelectDropDown = true;
+        this.isHideShowDistSelectDropDown = false;
+        this.isHideShowblckSelectDropDown = false;
+        break;
+      case "2":
+        this.isHideShowDistSelectDropDown = true;
+        this.isHideShowblckSelectDropDown = false
+        break;
+      case "3":
+        this.isHideShowblckSelectDropDown = true;
+        break;
+
+    }
   }
 
 
@@ -199,4 +245,64 @@ ngAfterViewInit(): void{
      }]
     };
   } 
+
+
+  getYearId(event:any){
+    this.reportYear = event.target.value;
+    if(this.locationType == 1){
+      this.getStateYearWise(this.reportYear);
+    }
+  }
+  getStateYearWise(year:any) {
+    const data = { "yearId": year };
+    this.masterDataService.getStateYearWise(data).subscribe((res) => {
+debugger
+      this.stateList = res.rowValue;
+
+    })
+  }
+
+  getDistrictYearWise(event:any) {
+    debugger
+    this.stateName="";
+        let filterData = _.filter(
+          this.stateList,
+          (item) => {
+            return item.state_id == event.target.value;
+          }
+        );
+        this.stateName =filterData[0].state_name;
+        const data = { "yearId": this.reportYear, "stateId": this.reportStateId };
+        this.masterDataService.getDistrictYearWise(data).subscribe((res) => {
+          this.districtList = res.rowValue;
+        })
+      }
+
+      getBlockYearWise(event:any) {
+        debugger
+        this.districtName="";
+        console.log("District Name " + event.target.value);
+        let filterData = _.filter(
+          this.districtList,
+          (item) => {
+            return item.district_id == event.target.value;
+          }
+        );
+        this.districtName = filterData[0].district_name;
+        const data = { "yearId": this.reportYear, "stateId": this.reportStateId, "districtId": this.reportDistrictId };
+        this.masterDataService.getBlockYearWise(data).subscribe((res) => {
+          this.blockList = res.rowValue;
+        })
+      }
+
+      getBlockName(event:any){
+        this.blockName="";
+        let filterData = _.filter(
+          this.blockList,
+          (item) => {
+            return item.block_id == event.target.value;
+          }
+        );
+        this.blockName = filterData[0].block_name;
+      }
 }
