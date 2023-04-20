@@ -5,97 +5,108 @@
   <div class="container-flued">
     <div class="card p-0">
       <div class="card-header">Chart
-         <div class="row float-end"  style="width: 275px; ">
-            <div class="col-7">
-              <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" (click)="filterCollapse()"
+        <div class="row float-end" style="width: 275px; ">
+          <div class="col-7">
+            <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" (click)="filterCollapse()"
               class="border side-menu float-end mb-1 rounded-3 p-1 text-decoration-none"><i
-                  class="bi bi-list bi-lg py-2 p-1"></i> Report Filter</a>
+                class="bi bi-list bi-lg py-2 p-1"></i> Report Filter</a>
           </div>
           <div class="col-5">
-          <a href="" class="common-btn btn float-end "><i class="bi bi-arrow-left"></i>
-            Back</a>
-            </div>
+            <a href="" class="common-btn btn float-end "><i class="bi bi-arrow-left"></i>
+              Back</a>
+          </div>
         </div>
       </div>
       <div class="card p-0">
         <div class="container-fluid">
-            <div class="row flex-nowrap">
-              <div class="card-body  p-0">
-                <div class="row">
-                  <div class="col-6"><div class id="container" class="h-100 d-flex align-items-center justify-content-center" >
-                    <highcharts-chart [Highcharts]="highcharts1" [options]="chartOptions1" (click)="showSecandGraph($event)">
+          <div class="row flex-nowrap">
+            <div class="card-body  p-0">
+              <div class="row">
+                <div class="col-6">
+                  <div class id="container" class="h-100 d-flex align-items-center justify-content-center">
+                    <highcharts-chart [Highcharts]="highcharts1" [options]="chartOptions1"
+                      (click)="showSecandGraph($event)">
                     </highcharts-chart>
-                  </div></div>
-                  <div class="col-6 "> <div class id="container" class="h-100 d-flex align-items-center justify-content-center" >
+                  </div>
+                </div>
+                <div class="col-6 ">
+                  <div class id="container" class="h-100 d-flex align-items-center justify-content-center">
                     <highcharts-chart [Highcharts]="highcharts1" [options]="chartOptions2">
                     </highcharts-chart>
-                  </div></div>
-                 
+                  </div>
                 </div>
+
+              </div>
             </div>
-            </div>
-            <div id="sidebar" class="collapse collapse-horizontal border-end">
-                <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start">
-                    <div class="mb-3">
-                        <label for="state" class="form-label">Location Type Search </label>
-                        <select class="form-select form-select-sm" id="sel1" name="sellist1"
-                            (change)="getLocationType($event)">
-                            <option value="0" selected>All India/National</option>
-                            <option value="1">State Wise</option>
-                            <option value="2">District Wise</option>
-                            <option value="3">Block Wise</option>
-                            <option value="4">Parliament Wise</option>
-                            <option value="5">City Wise</option>
-                        </select>
-                    </div>
-                   
-                    <div class="mb-3">
-                      <label for="year" class="form-label">Year </label>
-                      <select class="form-select form-select-sm" [(ngModel)]="reportYear" (change)="getYearId($event)">
-                          <option value="0" selected disabled>Select Year</option>
-                          <option *ngFor="let year of yearList" [value]=year.yearId selected>{{year.reportYear}}</option>
-                        </select>
-                  </div>
-              
-                <ng-container *ngIf="isHideShowStateSelectDropDown || isHideShowDistSelectDropDown || isHideShowblckSelectDropDown">
-                    <div class="mb-3">
-                      <label for="state" class="form-label">State </label>
-                      <select class="form-select form-select-sm" [(ngModel)]="reportStateId"
-                          (change)="getDistrictYearWise($event)">
-                          <option value="0" selected disabled>Select Stata Name</option>
-                          <option *ngFor="let state of stateList" [value]="state.state_id">{{state.state_name}}</option>
-                      </select>
-                  </div>
-                </ng-container>
-                <ng-container *ngIf="isHideShowDistSelectDropDown || isHideShowblckSelectDropDown ">
-                  <div class="mb-3">
-                    <label for="district" class="form-label">District</label>
-                    <select class="form-select form-select-sm" [(ngModel)]="reportDistrictId" c (change)="getBlockYearWise($event)" name="sellist1">
+          </div>
+          <div id="sidebar" class="collapse collapse-horizontal border-end">
+            <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start">
+              <div class="mb-3">
+                <label for="state" class="form-label">Location Type Search </label>
+                <select class="form-select form-select-sm" id="sel1" name="sellist1" (change)="getLocationType($event)">
+                  <option value="0" selected>All India/National</option>
+                  <option value="1">State Wise</option>
+                  <option value="2">District Wise</option>
+                  <option value="3">Block Wise</option>
+                  <option value="4">Parliament Wise</option>
+                  <option value="5">City Wise</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="year" class="form-label">Year </label>
+                <select class="form-select form-select-sm" [(ngModel)]="reportYear" (change)="getYearId($event)">
+                  <option value="0" selected disabled>Select Year</option>
+                  <option *ngFor="let year of yearList" [value]=year.yearId selected>{{year.reportYear}}</option>
+                </select>
+              </div>
+
+              <ng-container
+                *ngIf="isHideShowStateSelectDropDown || isHideShowDistSelectDropDown || isHideShowblckSelectDropDown">
+                <div class="mb-3">
+                  <label for="state" class="form-label">State </label>
+                  <select class="form-select form-select-sm" [(ngModel)]="reportStateId"
+                    (change)="getDistrictYearWise($event)">
+                    <option value="0" selected disabled>Select Stata Name</option>
+                    <option *ngFor="let state of stateList" [value]="state.state_id">{{state.state_name}}</option>
+                  </select>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="isHideShowDistSelectDropDown || isHideShowblckSelectDropDown ">
+                <div class="mb-3">
+                  <label for="district" class="form-label">District</label>
+                  <select class="form-select form-select-sm" [(ngModel)]="reportDistrictId" c
+                    (change)="getBlockYearWise($event)" name="sellist1">
                     <option value="" selected disabled>Select District</option>
                     <option value="0">All District</option>
-                    <option *ngFor="let district of districtList" [value]="district.district_id">{{district.district_name}}</option>
+                    <option *ngFor="let district of districtList" [value]="district.district_id">
+                      {{district.district_name}}</option>
                   </select>
                 </div>
               </ng-container>
               <ng-container *ngIf="isHideShowblckSelectDropDown">
-                  <div class="mb-3">
-                      <label for="block" class="form-label">Block</label>
-                      <select class="form-select form-select-sm" id="sel1" [(ngModel)]="reportBlockId" (change)="getBlockName($event)">
-                          <option value="" selected disabled>Select Block</option>
-                          <option value="0">All Block</option>
-                          <option *ngFor="let block of blockList" [value]="block.block_id">{{block.block_name}}</option>
-                        </select>
-                  </div>
-                </ng-container>
+                <div class="mb-3">
+                  <label for="block" class="form-label">Block</label>
+                  <select class="form-select form-select-sm" id="sel1" [(ngModel)]="reportBlockId"
+                    (change)="getBlockName($event)">
+                    <option value="" selected disabled>Select Block</option>
+                    <option value="0">All Block</option>
+                    <option *ngFor="let block of blockList" [value]="block.block_id">{{block.block_name}}</option>
+                  </select>
                 </div>
+              </ng-container>
+              <div style="text-align: center;">
+                <button type="button" class="btn btn-primary" (click)="search()">Search</button>
             </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+
+
     </div>
 
-     
-   
+
+
   </div>
-
-
-  
-</div>
