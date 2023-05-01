@@ -171,4 +171,13 @@ export class TabularComponent {
     this.abc = "{'shamim':'Y'}" + Math.random();
     sessionStorage.setItem("filterConfig", this.filterConfig);
   }
+
+  
+  downloadExlReport(){
+
+  }
+
+  downloadPdfReport(){
+
+  }
 }

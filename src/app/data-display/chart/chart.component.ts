@@ -1,15 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { ColDef, ColumnApi, GridReadyEvent, SideBarDef } from 'ag-grid-community';
-import { IOlympicData } from '../../data-display/interface';
 import 'ag-grid-enterprise';
 import { TabularDataService } from '../../service/tabular-data-service.component';
-import { SearchMasterComponent } from '../../commonComponent/search-master/search-master.component';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import * as Highcharts from "highcharts/highmaps";
 import HC_sunburst from 'highcharts/modules/sunburst';
-import * as HighchartsExporting from "highcharts/modules/exporting";
-import * as HighchartsExportData from "highcharts/modules/export-data";
 import { MasterDataService } from 'src/app/service/master-data-service.component';
 import _ from 'lodash';
 HC_sunburst(Highcharts);
@@ -40,10 +36,10 @@ export class ChartComponent {
   graphAllDatasum: any;
   pervalue: any;
   stateList: any[] = [];
-  reportYear: any;
+  reportYear: any = 20;
   yearList: any[] = [];
-  reportStateId: any;
-  reportDistrictId: any;
+  reportStateId: any=0;
+  reportDistrictId: any = 0;
   reportBlockId: any;
   stateName: any;
   districtName: any
@@ -53,6 +49,9 @@ export class ChartComponent {
   stateId:any;
   districtId:any;
   blockId:any;
+
+  stateRequired: boolean = false;
+  districtRequired: boolean = false;
 
   isHideShowStateSelectDropDown: boolean = false;
   isHideShowDistSelectDropDown: boolean = false;
@@ -77,10 +76,11 @@ export class ChartComponent {
     })
 
     let value = {
-      stateId:110,
+      stateId:this.stateId,
       districtId:this.districtId,
       blockId:this.blockId,
-      reportId:this.reportId
+      reportId:this.reportId,
+      locationType:this.locationType
     }
     this.getChartRelatedData(value);
   }
@@ -102,13 +102,16 @@ export class ChartComponent {
         this.isHideShowStateSelectDropDown = true;
         this.isHideShowDistSelectDropDown = false;
         this.isHideShowblckSelectDropDown = false;
+        this.getStateListYearWise(this.reportYear);
         break;
       case "2":
         this.isHideShowDistSelectDropDown = true;
         this.isHideShowblckSelectDropDown = false
+        this.getStateListYearWise(this.reportYear);
         break;
       case "3":
         this.isHideShowblckSelectDropDown = true;
+        this.getStateListYearWise(this.reportYear);
         break;
 
     }
@@ -117,12 +120,12 @@ export class ChartComponent {
   getYearId(event: any) {
     this.reportYear = event.target.value;
     if (this.locationType == 1) {
-      this.getStateYearWise(this.reportYear);
+      this.getStateListYearWise(this.reportYear);
     }
   }
-  getStateYearWise(year: any) {
+  getStateListYearWise(year: any) {
     const data = { "yearId": year };
-    this.masterDataService.getStateYearWise(data).subscribe((res) => {
+    this.masterDataService.getStateListYearWise(data).subscribe((res) => {
       debugger
       this.stateList = res.rowValue;
 
@@ -131,6 +134,7 @@ export class ChartComponent {
 
   getDistrictYearWise(event: any) {
     this.stateId = event.target.value;
+    this.stateRequired = this.stateId ? false : true;
     this.stateName = "";
     let filterData = _.filter(
       this.stateList,
@@ -147,6 +151,7 @@ export class ChartComponent {
 
   getBlockYearWise(event: any) {
     this.districtId = event.target.value;
+    this.districtRequired = this.districtId ? false : true;
     this.districtName = "";
     let filterData = _.filter(
       this.districtList,
@@ -208,7 +213,7 @@ export class ChartComponent {
         height: '100%',
       },
       title: {
-        text: 'School Category And School Management Wise Enrolment'
+        text: ''
       },
 
       credits: {
@@ -227,8 +232,7 @@ export class ChartComponent {
 
   ///////// graph show on click  of first  graph///////////////////////////
   showSecandGraph(event: any) {
-    console.log(event)
-    console.log(this.updateddata)
+
     this.graphAllDatasum = 0;
     for (let i = 0; i < this.updateddata.length; i++) {
 
@@ -300,13 +304,30 @@ export class ChartComponent {
   }
 
   search(){
+    this.stateRequired = this.reportStateId == 0;
+    this.districtRequired = this.reportDistrictId == 0;
+    debugger
     let value = {
       stateId:this.stateId,
       districtId:this.districtId,
       blockId:this.blockId,
-      reportId:this.reportId
+      reportId:this.reportId,
+      locationType:this.locationType
     }
-
-    this.getChartRelatedData(value);
+    if(this.locationType == 1){
+      if(!this.stateRequired){
+        this.getChartRelatedData(value);
+      }
+    }else if(this.locationType == 2){
+      if(!this.stateRequired && !this.districtRequired){
+        this.getChartRelatedData(value);
+      }
+    }else if(this.locationType == 3){
+      if(!this.stateRequired){
+        this.getChartRelatedData(value);
+      }
+    }
+  
   }
+
 }

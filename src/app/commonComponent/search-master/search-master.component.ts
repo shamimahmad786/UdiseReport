@@ -114,7 +114,7 @@ export class SearchMasterComponent {
 
   getStateYearWise() {
     const data = { "yearId": this.reportYear };
-    this.masterDataService.getStateYearWise(data).subscribe((res) => {
+    this.masterDataService.getStateListYearWise(data).subscribe((res) => {
 debugger
       this.stateList = res.rowValue;
 

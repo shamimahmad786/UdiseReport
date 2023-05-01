@@ -31,7 +31,8 @@ import { ChartFilterComponent } from '../commonComponent/chart-filter/chart-filt
     ReportName,
     BroadManagementName,
     CenterManagementName,
-    ChartFilterComponent
+    ChartFilterComponent,
+
     
     
     // TabularDataService

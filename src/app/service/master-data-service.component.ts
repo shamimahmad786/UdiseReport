@@ -9,7 +9,7 @@ export class MasterDataService {
   constructor(private http: HttpClient) { }
 
   
-  getStateYearWise(data:any)
+  getStateListYearWise(data:any)
   {
     return this.http.post<any>(environment.BASE_URL + "/api/master/getStateYearWise", data);
   }
