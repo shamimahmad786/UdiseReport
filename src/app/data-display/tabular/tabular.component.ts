@@ -6,6 +6,8 @@ import 'ag-grid-enterprise';
 import { TabularDataService } from '../../service/tabular-data-service.component';
 import { SearchMasterComponent } from '../../commonComponent/search-master/search-master.component';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import jsPDF from 'jspdf';
+
 
 @Component({
   selector: 'app-tabular',
@@ -178,6 +180,14 @@ export class TabularComponent {
   }
 
   downloadPdfReport(){
-
+    alert("alert")
+    var pdf = new jsPDF();
+    pdf.setFontSize(20);
+    pdf.text("This is new PDF " ,10 ,10);
+    (pdf as any).autotable({
+      Headers : this.columnDefs
+    })
+    pdf.output('dataurlnewwindow')
+    pdf.save("table.pdf");
   }
 }
