@@ -69,15 +69,15 @@
         <div class="mt-2 d-flex justify-content-between align-items-center card-header">
                   
             <div>
-                <span>Report Id : {{reportId}}</span><h6 class="mb-0 ">{{reportId | reportName}}</h6>
+                <h6 class="mb-0 ">{{reportId | reportName}} : <span>(Report Id : {{reportId}})</span></h6>
             </div>
             <div>
                 <a href="" class="btn btn-border float-start back-btn "><i class="bi bi-arrow-left"></i> Back </a>
 
-                <a href="" class=" float-start p-0 me-3 " style="color:#fff; font-size: 14px; font-weight: normal;" (click)="downloadExlReport()"><img
-                    src="assets/images/download-excel.png" style="margin-right:6px; height: 24px;"></a>
-                    <a href="" class=" float-start p-0 me-3" style="color:#fff; font-size: 14px; font-weight: normal;" (click)="downloadPdfReport()"><img
-                        src="assets/images/download-excel.png" style="margin-right:6px;height: 24px; "></a>
+                <a href="" class=" float-start p-0 me-2 " style="color:#fff; font-size: 14px; font-weight: normal; margin-top:-3px" (click)="downloadExlReport()"><img
+                    src="assets/images/download-excel.png" style=" height: 30px;"></a>
+                    <a href="" class=" float-start p-0 me-3" style="color:#fff; font-size: 14px; font-weight: normal;  margin-top:-3px" (click)="downloadPdfReport()"><img
+                        src="assets/images/pdf-icon.svg" style=" height: 30px; "></a>
 
                 <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" (click)="filterCollapse()"
                     class="border side-menu float-end mb-1 rounded-3 p-1 text-decoration-none"><i
