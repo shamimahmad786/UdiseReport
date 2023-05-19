@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ElementRef, ViewChild } from '@angular/core';
 import { ColDef, ColumnApi, GridReadyEvent, SideBarDef } from 'ag-grid-community';
 import { IOlympicData } from '../../data-display/interface';
 import 'ag-grid-enterprise';
@@ -7,6 +7,7 @@ import { TabularDataService } from '../../service/tabular-data-service.component
 import { SearchMasterComponent } from '../../commonComponent/search-master/search-master.component';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import jsPDF from 'jspdf';
+import 'jspdf-autotable'
 
 
 @Component({
@@ -17,6 +18,7 @@ import jsPDF from 'jspdf';
 })
 export class TabularComponent {
   constructor(private http: HttpClient, private tabularDataService: TabularDataService,private routerService:Router) { }
+  @ViewChild('pdfTable', {static: false}) pdfTable!: ElementRef
 
   private gridColumnApi!: ColumnApi;
   public columnDefs: any[] = [];
@@ -85,7 +87,6 @@ export class TabularComponent {
 
   getTabularData(mapId: any) {
      this.loader =false;
-     debugger
      this.dependentData = JSON.stringify(mapId);
      
      this.locationType = JSON.parse(this.dependentData).reportFor;
@@ -180,14 +181,10 @@ export class TabularComponent {
   }
 
   downloadPdfReport(){
-    alert("alert")
-    var pdf = new jsPDF();
-    pdf.setFontSize(20);
-    pdf.text("This is new PDF " ,10 ,10);
-    (pdf as any).autotable({
-      Headers : this.columnDefs
-    })
-    pdf.output('dataurlnewwindow')
-    pdf.save("table.pdf");
+      var pdf = new jsPDF();
+      
+      (pdf as any).autoTable({html: '#table'})
+      pdf.output('dataurlnewwindow');
+      pdf.save("table.pdf");
   }
 }
